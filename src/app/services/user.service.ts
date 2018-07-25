@@ -35,7 +35,7 @@ export class UserService {
   */
  public loginUser(user: User) {
    console.log(`Attempting to login user: ${user.username}`);
-   let json = JSON.stringify(user);
+   const json = JSON.stringify(user);
    return this.http.post<User>(environment.apiUrl + 'login', json, HTTP_OPTIONS);
  }
 

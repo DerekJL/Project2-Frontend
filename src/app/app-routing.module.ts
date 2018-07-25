@@ -14,7 +14,7 @@ const ROUTES: Routes = [
         component: RegisterComponent
     },
     {
-        path:'login',
+        path: 'login',
         component: LoginComponent
     }
 ];
