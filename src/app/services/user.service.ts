@@ -42,11 +42,9 @@ export class UserService {
  public registerUser(user: User): Observable<User> {
    console.log(`Attempting to register user : ${user.username}`);
    const json = JSON.stringify(user);
-   const emailAvailable = this.isEmailAvailable(user.email);
-   const usernameAvailable = this.isUsernameAvailable(user.username);
-   if (emailAvailable && usernameAvailable) {
-    return this.http.post<User>(environment.apiUrl + 'register', json, HTTP_OPTIONS);
-   }
+  //  const emailAvailable = this.isEmailAvailable(user.email);
+  //  const usernameAvailable = this.isUsernameAvailable(user.username);
+  return this.http.post<User>(environment.apiUrl + 'register', json, HTTP_OPTIONS);
  }
 
  public isEmailAvailable(email: string): Observable<boolean> {

@@ -23,7 +23,7 @@
 
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="text" class="form-control" id="email" name="user.email" placeholder="Email" [(ngModel)]="user.email">
+          <input type="text" class="form-control" id="email" name="user.email" placeholder="Email" [(ngModel)]="user.email" (blur)="validEmail()">
         </div>
         <div *ngIf="!isValidEmail" class="alert alert-danger" id="formError">
           Email not accepted. Please try again.
@@ -31,7 +31,7 @@
 
         <div class="form-group">
           <label for="username">Username</label>
-          <input type="text" class="form-control" id="username" name="user.username" placeholder="Username" [(ngModel)]="user.username">
+          <input type="text" class="form-control" id="username" name="user.username" placeholder="Username" [(ngModel)]="user.username" (blur)="validUsername()">
         </div>
         <div *ngIf="!isValidUsername" class="alert alert-danger" id="formError">
           Username not accepted. Please try again.
