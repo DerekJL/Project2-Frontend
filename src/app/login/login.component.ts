@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../models/user';
+import { UserService } from '../services/user.service';
+import { Router } from '../../../node_modules/@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +18,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     if(this.loggedUser != null) {
-      this.router.navigate(['dashboard']);
+      //this.router.navigate(['dashboard']);
     }
   }
 
