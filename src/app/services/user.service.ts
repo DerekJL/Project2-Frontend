@@ -33,9 +33,9 @@ export class UserService {
     server asynchronously, so subscribing to this observable makes it possible to perform
     a function once a value is received.
   */
- public loginUser(user: User): Observable<User> {
+ public loginUser(user: User) {
    console.log(`Attempting to login user: ${user.username}`);
-   const json = JSON.stringify(user);
+   let json = JSON.stringify(user);
    return this.http.post<User>(environment.apiUrl + 'login', json, HTTP_OPTIONS);
  }
 
