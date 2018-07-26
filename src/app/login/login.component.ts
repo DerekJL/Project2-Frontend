@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     if(this.loggedUser != null) {
-      //this.router.navigate(['dashboard']);
+      this.router.navigate(['dashboard']);
     }
   }
 
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('user', JSON.stringify(users));
         console.log(`User, ${this.user.username}, successfully logged in!`);
         console.log(localStorage.getItem('user'));
-        //this.router.navigate(['dashboard']);
+        this.router.navigate(['dashboard']);
       }
     })
   }
