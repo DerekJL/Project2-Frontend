@@ -47,14 +47,14 @@ export class UserService {
   return this.http.post<User>(environment.apiUrl + 'user/register', json, HTTP_OPTIONS);
  }
 
- public isEmailAvailable(user: User): Observable<boolean> {
+ public isEmailAvailable(user: User): Observable<User> {
    const json = JSON.stringify(user);
-   return this.http.post<boolean>(environment.apiUrl + 'user/email', json, HTTP_OPTIONS);
+   return this.http.post<User>(environment.apiUrl + 'user/email', json, HTTP_OPTIONS);
  }
 
- public isUsernameAvailable(user: User): Observable<boolean> {
+ public isUsernameAvailable(user: User): Observable<User> {
    const json = JSON.stringify(user);
-   return this.http.post<boolean>(environment.apiUrl + 'user/username', json, HTTP_OPTIONS);
+   return this.http.post<User>(environment.apiUrl + 'user/username', json, HTTP_OPTIONS);
  }
 }
 

@@ -10,13 +10,17 @@ import { RegisterComponent } from './register/register.component';
 import { UserService } from './services/user.service';
 import { HttpClientModule } from '../../node_modules/@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { WorkoutService } from './services/workout.service';
+import { ExerciseService } from './services/exercise.service';
+import { NavComponent } from './nav/nav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    DashboardComponent
+    DashboardComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +30,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     NgbModule.forRoot()
   ],
   providers: [
-    UserService
+    UserService, WorkoutService, ExerciseService
   ],
   bootstrap: [AppComponent]
 })
