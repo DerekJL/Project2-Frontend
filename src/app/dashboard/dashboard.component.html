@@ -1,0 +1,48 @@
+
+  
+<section class="jumbotron text-center">
+  <div class="container">
+    <h1 class="jumbotron-heading">WorkMeOut</h1>
+    <p class="lead text-muted">Your Guide to Personal Fitness</p>
+      <div class="btn-group">
+        <a href="#" class="btn btn-success">Start a workout!</a>
+        <div ngbDropdown class="d-inline-block">
+          <button class="btn btn-outline-success" id="dropdownBasic1" ngbDropdownToggle>Select Workout to Start</button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1" *ngFor="let workout of workouts">
+            <button class="dropdown-item" id="{{workout.workout_id}}">{{workout.workout_name}}</button>
+            <!-- <button class="dropdown-item">Another Action</button>
+            <button class="dropdown-item">Something else is here</button> -->
+          </div>
+        </div>
+      </div>
+  </div>
+</section>
+<div class="album py-5 bg-light">
+  <div class="container">
+
+  <div class="row justify-content-center">
+      <div class="col-md-6">
+          <div class="card text-center">
+            <div class="card-body">
+              <h5 class="card-title">EXERCISES</h5>
+              <p class="card-text">With supporting text below as a natur<br><br><br>al lead-in to additional content.</p>
+              <div class="btn-group align-bottom">
+                <button type="button" class="btn btn-outline-primary">View Exercises</button> 
+                <button type="button" class="btn btn-outline-primary">Create Exercise</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card text-center" style="height: 300px;">
+            <div class="card-body">
+              <h5 class="card-title">WORKOUTS</h5>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <a href="#" class="btn btn-primary align-bottom">View Workouts</a>
+              <a href="#" class="btn btn-primary">Create Workout </a>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>

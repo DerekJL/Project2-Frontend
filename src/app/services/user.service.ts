@@ -36,7 +36,7 @@ export class UserService {
  public loginUser(user: User) {
    console.log(`Attempting to login user: ${user.username}`);
    let json = JSON.stringify(user);
-   return this.http.post<User>(environment.apiUrl + 'login', json, HTTP_OPTIONS);
+   return this.http.post<User>(environment.apiUrl + 'user/login', json, HTTP_OPTIONS);
  }
 
  public registerUser(user: User): Observable<User> {
@@ -44,17 +44,17 @@ export class UserService {
    const json = JSON.stringify(user);
   //  const emailAvailable = this.isEmailAvailable(user.email);
   //  const usernameAvailable = this.isUsernameAvailable(user.username);
-  return this.http.post<User>(environment.apiUrl + 'register', json, HTTP_OPTIONS);
+  return this.http.post<User>(environment.apiUrl + 'user/register', json, HTTP_OPTIONS);
  }
 
- public isEmailAvailable(email: string): Observable<boolean> {
-   const json = JSON.stringify(email);
-   return this.http.post<boolean>(environment.apiUrl + 'isEmailAvailable', json, HTTP_OPTIONS);
+ public isEmailAvailable(user: User): Observable<User> {
+   const json = JSON.stringify(user);
+   return this.http.post<User>(environment.apiUrl + 'user/email', json, HTTP_OPTIONS);
  }
 
- public isUsernameAvailable(username: string): Observable<boolean> {
-   const json = JSON.stringify(username);
-   return this.http.post<boolean>(environment.apiUrl + 'isUsernameAvailable', json, HTTP_OPTIONS);
+ public isUsernameAvailable(user: User): Observable<User> {
+   const json = JSON.stringify(user);
+   return this.http.post<User>(environment.apiUrl + 'user/username', json, HTTP_OPTIONS);
  }
 }
 
