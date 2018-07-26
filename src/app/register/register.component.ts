@@ -28,8 +28,8 @@ export class RegisterComponent implements OnInit {
   }
 
   validEmail() {
-    this.userService.isEmailAvailable(this.user.email).subscribe(valid => {
-      if (!valid) {
+    this.userService.isEmailAvailable(this.user).subscribe(users => {
+      if (users !== null) {
         this.isValidEmail = !this.isValidEmail;
       } else if (!this.validateEmail(this.user.email)) {
         this.isValidEmail = !this.isValidEmail;
@@ -46,8 +46,8 @@ export class RegisterComponent implements OnInit {
   }
 
   validUsername() {
-    this.userService.isUsernameAvailable(this.user.username).subscribe(valid => {
-      if (!valid) {
+    this.userService.isUsernameAvailable(this.user).subscribe(users => {
+      if (users !== null) {
         this.isValidUsername = !this.isValidUsername;
       } else if (!this.validateUsername(this.user.username)) {
         this.isValidUsername = !this.isValidUsername;
