@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
   }
 
   validEmail() {
-    this.userService.isEmailAvailable(this.user.email).subscribe(valid => {
+    this.userService.isEmailAvailable(this.user).subscribe(valid => {
       if (!valid) {
         this.isValidEmail = !this.isValidEmail;
       } else if (!this.validateEmail(this.user.email)) {
@@ -46,7 +46,7 @@ export class RegisterComponent implements OnInit {
   }
 
   validUsername() {
-    this.userService.isUsernameAvailable(this.user.username).subscribe(valid => {
+    this.userService.isUsernameAvailable(this.user).subscribe(valid => {
       if (!valid) {
         this.isValidUsername = !this.isValidUsername;
       } else if (!this.validateUsername(this.user.username)) {
