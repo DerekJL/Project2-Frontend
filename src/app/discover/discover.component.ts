@@ -43,16 +43,50 @@ export class DiscoverComponent implements OnInit {
     this.workoutService.startWorkout(workout);
   }
 
-  openModal(workout: Workout) {
+  openWorkoutModal(workout: Workout) {
+    this.getExercises(workout.workout_id);
+    let numExercises = '<li>' + this.exerciseList.length + '</li>';
     this.modal .alert()
     .size('lg')
     .isBlocking(true)
-    .showClose(true)
+    .showClose(false)
     .keyboard(27)
     .title(workout.workout_name)
-    .body('A Customized Modal')
+    .body('<ul>' + numExercises + this.listExercises() + '</ul>')
     .open();
   }
 
+  openExerciseModal(exercise: Exercise) {
+    this.modal .alert()
+    .size('lg')
+    .isBlocking(true)
+    .showClose(false)
+    .keyboard(27)
+    .title(exercise.exercise_name)
+    .body('<ul><li>Sets: '+exercise.exercise_sets+'</li><li>Reps: '+exercise.exercise_reps+'</li><li>Duration: '+exercise.exercise_duration+'</li></ul>')
+    .open();
+  }
+
+  getExercises(id: number) {
+    this.exerciseService.getExercisesByWorkoutId(id).subscribe(response => {
+      this.exerciseList = JSON.parse(<any>response);
+    });
+  }
+
+  getNumberOfExercises(id: number) {
+    let exercisesForWorkout: Exercise[];
+    this.exerciseService.getExercisesByWorkoutId(id).subscribe(response => {
+      exercisesForWorkout = JSON.parse(<any>response);
+    });
+    return exercisesForWorkout.length;
+  }
+
+  listExercises() {
+    let returnString: string;
+    for (let exercise of this.exerciseList) {
+      returnString.concat('<li>' + exercise.exercise_name + '</li>');
+    }
+    return returnString;
+  }
 
 }
