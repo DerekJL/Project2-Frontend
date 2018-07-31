@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Workout } from '../models/workout';
 import { UserService } from '../services/user.service';
 import { WorkoutService } from '../services/workout.service';
+import { Exercise } from '../models/exercise';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,6 +16,8 @@ export class DashboardComponent implements OnInit {
   user: User;
   workout1: Workout = new Workout (1, 1, 1, 1, 'push-ups');
   workouts: Workout[] = [this.workout1];
+  exercise1: Exercise = new Exercise (1, 'pushup', 1, 'pushup', 1, 1, 1, 1, 1);
+  exercises: Exercise[];
   loggedUser = JSON.parse(localStorage.getItem('user'));
 
   constructor(private router: Router, private workoutService: WorkoutService) { }

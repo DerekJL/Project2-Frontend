@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Workout } from '../models/workout';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { Router } from '../../../node_modules/@angular/router';
 
 const HTTP_OPTIONS = {
   headers: new HttpHeaders({
@@ -15,7 +16,7 @@ const HTTP_OPTIONS = {
 })
 export class WorkoutService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     const user = JSON.parse(localStorage.getItem('user'));
   }
 
@@ -33,5 +34,11 @@ export class WorkoutService {
   public getAllWorkouts(): Observable<Workout> {
     console.log('Attempting to retrieve all workouts');
     return this.http.get<Workout>(environment.apiUrl + 'workouts');
+  }
+
+  public startWorkout(workout: Workout) {
+    let workoutString = JSON.stringify(workout);
+    sessionStorage.setItem('workout', workoutString);
+    this.router.navigate(['workoutguide']);
   }
 }

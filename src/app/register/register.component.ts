@@ -69,7 +69,6 @@ export class RegisterComponent implements OnInit {
         if (users === null) {
           // Why would a user return null here?
         } else {
-          this.userService.subscribers.next(users);
           localStorage.setItem('user', JSON.stringify(users));
           console.log(localStorage.getItem('user'));
           this.router.navigate(['dashboard']);
