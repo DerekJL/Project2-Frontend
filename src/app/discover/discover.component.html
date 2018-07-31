@@ -36,25 +36,28 @@
 
 
 
+<div class="card-deck"  *ngFor="let workout of workoutList">
+    <div class="card border-info mb-3" style="max-width: 18rem">
+      <div class="card-body text-info">
+        <h5 class="card-title">{{workout.workout_name}}</h5>
+        <p class="card-text">Description: {{workout.workout_description}}</p>
+        <div class="card-footer text-muted">
+          <a class="card-link"  (click)="openModal(workout)">View Exercises</a>
+          <a class="card-link" (click)="startWorkout(workout)">Start Workout</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
-<!-- <section class="workouts-table">
-  <h2>All Workouts</h2>
-  <table class="table-hover table-striped">
-    <thead>
-      <tr>
-        <th colspan="2">Name</th>
-        <th>Description</th>
-        <th>Duration</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let camper of campers">
-        <td cellpadding="0" cellspacing="0" class="avatar-cell"><img class="avatar" src="{{camper.img}}" alt="camper avatar"></td>
-        <td>{{camper.username}}</td>
-        <td>{{camper.recent}}</td>
-        <td>{{camper.alltime}}</td>
-      </tr>
-    </tbody>
-  </table>
-</section> -->
+  <div class="card-deck"  *ngFor="let exercise of exerciseList">
+    <div class="card border-info mb-3" style="max-width: 18rem">
+      <div class="card-body text-info">
+        <h5 class="card-title">{{exercise.exercise_name}}</h5>
+        <p class="card-text">Description: {{exercise.exercise_description}}</p>
+        <div class="card-footer text-muted">
+          <a class="card-link"  (click)="openModal(workout)">Exercise Details</a>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '../../../node_modules/@angular/router';
 import { WorkoutService } from '../services/workout.service';
 import { ExerciseService } from '../services/exercise.service';
+import { Workout } from '../models/workout';
+import { Exercise } from '../models/exercise';
+import { Modal } from '../../../node_modules/ngx-modialog/plugins/bootstrap';
 
 @Component({
   selector: 'app-discover',
@@ -10,10 +13,10 @@ import { ExerciseService } from '../services/exercise.service';
 })
 export class DiscoverComponent implements OnInit {
 
-  workoutList = [];
-  exerciseList = [];
+  workoutList: Workout[];
+  exerciseList: Exercise[];
 
-  constructor(private workoutService: WorkoutService, private exerciseService: ExerciseService, private router: Router) { }
+  constructor(private workoutService: WorkoutService, private exerciseService: ExerciseService, private router: Router, public modal: Modal) { }
 
   ngOnInit() {
 
@@ -35,5 +38,21 @@ export class DiscoverComponent implements OnInit {
       console.log(this.exerciseList);
     })
   }
+
+  startWorkout(workout: Workout) {
+    this.workoutService.startWorkout(workout);
+  }
+
+  openModal(workout: Workout) {
+    this.modal .alert()
+    .size('lg')
+    .isBlocking(true)
+    .showClose(true)
+    .keyboard(27)
+    .title(workout.workout_name)
+    .body('A Customized Modal')
+    .open();
+  }
+
 
 }

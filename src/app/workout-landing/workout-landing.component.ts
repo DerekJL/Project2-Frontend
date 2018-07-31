@@ -13,7 +13,7 @@ import { Modal } from '../../../node_modules/ngx-modialog/plugins/bootstrap';
 export class WorkoutLandingComponent implements OnInit {
 
   workouts: Workout[];
-  workout1: Workout = new Workout (1, 1, 1, 1, 'push-ups');
+  //workout1: Workout = new Workout (1, 1, 1, 1, 'push-ups');
   loggedUser: User = JSON.parse(localStorage.getItem('user'));
   constructor(private router: Router, private workoutService: WorkoutService, public modal: Modal) { }
 
@@ -21,7 +21,9 @@ export class WorkoutLandingComponent implements OnInit {
     // this.workoutService.getWorkoutByUserId(this.loggedUser.user_id).subscribe(response => {
     //   this.workouts = JSON.parse(<any>response);
     // });
-    this.workouts = [this.workout1];
+
+   
+    //this.workouts = [this.workout1];
   }
 
   startWorkout(workout: Workout) {
