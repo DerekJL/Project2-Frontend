@@ -15,6 +15,7 @@ import { WorkoutService } from './services/workout.service';
 import { ExerciseService } from './services/exercise.service';
 import { NavComponent } from './nav/nav.component';
 import { CreateexerciseComponent } from './createexercise/createexercise.component';
+import { DiscoverComponent } from './discover/discover.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CreateexerciseComponent } from './createexercise/createexercise.compone
     WorkoutguideComponent,
     DashboardComponent,
     NavComponent,
-    CreateexerciseComponent
+    CreateexerciseComponent,
+    DiscoverComponent
   ],
   imports: [
     BrowserModule,

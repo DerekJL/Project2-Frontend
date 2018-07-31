@@ -1,0 +1,60 @@
+<h1>Discover</h1>>
+<h2>Search for your new favorite workouts and exercises from around the globe</h2>
+
+<p>
+  <button type="button" class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed"
+          [attr.aria-expanded]="!isCollapsed" aria-controls="collapseWorkouts">
+    Show Workouts
+  </button>
+</p>
+<div id="collapseWorkouts" [ngbCollapse]="isCollapsed">
+  <div class="card">
+    <div class="card-body">
+      You can collapse this card by clicking Toggle
+    </div>
+  </div>
+</div>
+
+
+
+<p>
+  <button type="button" class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed"
+          [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExercises">
+    Show Exercises
+  </button>
+</p>
+<div id="collapseExercises" [ngbCollapse]="isCollapsed">
+  <div class="card">
+    <div class="card-body">
+      You can collapse this card by clicking Toggle
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<!-- <section class="workouts-table">
+  <h2>All Workouts</h2>
+  <table class="table-hover table-striped">
+    <thead>
+      <tr>
+        <th colspan="2">Name</th>
+        <th>Description</th>
+        <th>Duration</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let camper of campers">
+        <td cellpadding="0" cellspacing="0" class="avatar-cell"><img class="avatar" src="{{camper.img}}" alt="camper avatar"></td>
+        <td>{{camper.username}}</td>
+        <td>{{camper.recent}}</td>
+        <td>{{camper.alltime}}</td>
+      </tr>
+    </tbody>
+  </table>
+</section> -->
