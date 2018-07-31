@@ -8,7 +8,8 @@
     <div class="card border-info mb-3" style="max-width: 18rem">
       <div class="card-body text-info">
         <h5 class="card-title">{{workout.workout_name}}</h5>
-        <p class="card-text">Number of exercises: {{workout.type_id}}</p>
+        <p class="card-text">Number of exercises: {{getNumberOfExercises(workout.workout_id)}}</p>
+        <p class="card-text">Workout description: {{workout.workout_description}}</p>
         <div class="card-footer text-muted">
           <a class="card-link"  (click)="openModal(workout)">View Details</a>
           <a class="card-link" (click)="startWorkout(workout)">Start Workout</a>
