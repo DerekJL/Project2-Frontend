@@ -11,6 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { UserService } from './services/user.service';
 import { HttpClientModule } from '../../node_modules/@angular/common/http';
+import { WorkoutguideComponent } from './workoutguide/workoutguide.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { WorkoutService } from './services/workout.service';
 import { ExerciseService } from './services/exercise.service';
@@ -18,17 +19,20 @@ import { NavComponent } from './nav/nav.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { WorkoutLandingComponent } from './workout-landing/workout-landing.component';
 import { ExerciselandingComponent } from './exerciselanding/exerciselanding.component';
+import { CreateexerciseComponent } from './createexercise/createexercise.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
+    WorkoutguideComponent,
     DashboardComponent,
     NavComponent,
     SidenavComponent,
     WorkoutLandingComponent,
-    ExerciselandingComponent
+    ExerciselandingComponent,
+    CreateexerciseComponent
   ],
   imports: [
     BrowserModule,

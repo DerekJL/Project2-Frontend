@@ -5,6 +5,8 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { WorkoutLandingComponent } from './workout-landing/workout-landing.component';
 import { ExerciselandingComponent } from './exerciselanding/exerciselanding.component';
+import { WorkoutguideComponent } from './workoutguide/workoutguide.component';
+import { CreateexerciseComponent } from './createexercise/createexercise.component';
 
 const ROUTES: Routes = [
     {
@@ -31,6 +33,14 @@ const ROUTES: Routes = [
     {
         path: 'exerciselanding',
         component: ExerciselandingComponent
+    },
+    {
+        path: 'workoutguide',
+        component: WorkoutguideComponent
+    },
+    {
+        path: 'createexercise',
+        component: CreateexerciseComponent
     }
 ];
 

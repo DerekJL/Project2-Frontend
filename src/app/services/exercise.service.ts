@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '../../../node_modules/@angular/common/http';
-import { Exercise } from '../models/exercise';
+import { Workout } from '../models/workout';
+import { Observable, BehaviorSubject } from '../../../node_modules/rxjs';
 import { environment } from '../../environments/environment';
+import { Exercise } from '../models/exercise';
 
 const HTTP_OPTIONS = {
   headers: new HttpHeaders({
@@ -12,22 +14,24 @@ const HTTP_OPTIONS = {
 @Injectable({
   providedIn: 'root'
 })
+
 export class ExerciseService {
 
   constructor(private http: HttpClient) {
-    let user = JSON.parse(localStorage.getItem('user'));
+    const user = JSON.parse(localStorage.getItem('user'));
+    const workout = JSON.parse(localStorage.getItem('workout'));
   }
 
-  createExercise(exercise: Exercise) {
+  public getExercisesByWorkoutId(workout_id: number): Observable<Workout> {
+    console.log(`Attempting to retrieve exercises by workout: ${workout_id}`);
+    return this.http.get<Workout>(environment.apiUrl + `exercises/${workout_id}`, HTTP_OPTIONS);
+  }
+
+  public createExercise(exercise: Exercise): Observable<Exercise> {
+    console.log(`Attempting to create exercise: ${exercise.exercise_id}`);
     let json = JSON.stringify(exercise);
-    return this.http.post<Exercise>(environment.apiUrl + 'exercises', json, HTTP_OPTIONS);
+    return this.http.post<Exercise>(environment.apiUrl + 'exercise/create', json, HTTP_OPTIONS);
   }
 
-  getAllExercisesByUserId(id: number) {
-    return this.http.get<Exercise>(environment.apiUrl + `exercises/${id}`, HTTP_OPTIONS);
-  }
 
-  getAllExercises() {
-    return this.http.get<Exercise>(environment.apiUrl + 'exercises', HTTP_OPTIONS);
-  }
 }

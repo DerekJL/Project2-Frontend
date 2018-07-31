@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://localhost:8080/workmeout/'
+  apiUrl: 'http://localhost:9999/Project2Backend/'
 };
