@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '../../../node_modules/@angular/common/http';
-
+import { Workout } from '../models/workout';
+import { Observable } from '../../../node_modules/rxjs';
+import { environment } from '../../environments/environment';
 
 const HTTP_OPTIONS = {
   headers: new HttpHeaders({
@@ -19,10 +21,8 @@ export class ExerciseService {
     const workout = JSON.parse(localStorage.getItem('workout'));
   }
 
-  //function not done
-  // public getExercisesByWorkout(workout: Workout): Observable<Workout> {
-  //   console.log(`Attempting to create workout: ${workout.workout_id}`);
-  //   let json = JSON.stringify(workout);
-  //   return this.http.post<Workout>(environment.apiUrl + 'workouts', json, HTTP_OPTIONS);
-  // }
+  public getExercisesByWorkoutId(workout_id: number): Observable<Workout> {
+    console.log(`Attempting to retrieve exercises by workout: ${workout_id}`);
+    return this.http.get<Workout>(environment.apiUrl + `exercises/${workout_id}`, HTTP_OPTIONS);
+  }
 }

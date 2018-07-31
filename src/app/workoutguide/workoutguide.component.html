@@ -1,7 +1,13 @@
 
-  <h1 id="currentexercise">{{currentExercise}}</h1>
-  <h2 id="setduration">{{setDuration}}</h2>
-  <h2 id="setrest">{{setRest}}</h2>
-  <h2 id="nextexercise">{{nextExercise}}</h2>
-  <button id="endworkout"></button>
+  <div *ngIf = "showExercise">
+    <h1 id="currentexercise">{{currentExercise}}</h1>
+    <h2 id="setduration">{{setDuration}}</h2>
+    <h2 id="nextexercise">{{nextExercise}}</h2>
+  </div>
+  
+  <div *ngIf = "showRest">
+    <h2 id="setrest">{{setRest}}</h2>
+  </div>
+
+  <button id="endworkout" (click)="endWorkout()"></button>
 
