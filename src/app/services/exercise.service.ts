@@ -17,9 +17,7 @@ const HTTP_OPTIONS = {
 
 export class ExerciseService {
 
-  //subscribers: BehaviorSubject<Exercise> = new BehaviorSubject<Exercise>(null);
-
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
     const user = JSON.parse(localStorage.getItem('user'));
     const workout = JSON.parse(localStorage.getItem('workout'));
   }
