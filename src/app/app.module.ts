@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { ModalModule } from 'ngx-modialog';
+import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -14,6 +16,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { WorkoutService } from './services/workout.service';
 import { ExerciseService } from './services/exercise.service';
 import { NavComponent } from './nav/nav.component';
+import { SidenavComponent } from './sidenav/sidenav.component';
+import { WorkoutLandingComponent } from './workout-landing/workout-landing.component';
+import { ExerciselandingComponent } from './exerciselanding/exerciselanding.component';
 import { CreateexerciseComponent } from './createexercise/createexercise.component';
 
 @NgModule({
@@ -24,6 +29,9 @@ import { CreateexerciseComponent } from './createexercise/createexercise.compone
     WorkoutguideComponent,
     DashboardComponent,
     NavComponent,
+    SidenavComponent,
+    WorkoutLandingComponent,
+    ExerciselandingComponent,
     CreateexerciseComponent
   ],
   imports: [
@@ -31,7 +39,9 @@ import { CreateexerciseComponent } from './createexercise/createexercise.compone
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    ModalModule.forRoot(),
+    BootstrapModalModule
   ],
   providers: [
     UserService, WorkoutService, ExerciseService

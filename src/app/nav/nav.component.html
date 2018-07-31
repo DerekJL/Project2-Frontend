@@ -13,8 +13,14 @@
           <a class="nav-link" *ngIf="loggedUser === null" routerLink="register">Register</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" *ngIf="loggedUser !== null" routerLink="exerciselanding">Exercises</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" *ngIf="loggedUser !== null" routerLink="workoutlanding">Workouts</a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" *ngIf="loggedUser !== null" (click)="logout()">Logout</a>
-          </li>
+        </li>
       </ul>
       <form class="form-inline my-2 my-lg-0" *ngIf="loggedUser !== null">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
