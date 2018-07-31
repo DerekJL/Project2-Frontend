@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { UserService } from './services/user.service';
 import { HttpClientModule } from '../../node_modules/@angular/common/http';
+import { WorkoutguideComponent } from './workoutguide/workoutguide.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { WorkoutService } from './services/workout.service';
 import { ExerciseService } from './services/exercise.service';
@@ -19,6 +20,7 @@ import { NavComponent } from './nav/nav.component';
     AppComponent,
     LoginComponent,
     RegisterComponent,
+    WorkoutguideComponent,
     DashboardComponent,
     NavComponent
   ],
