@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { WorkoutguideComponent } from './workoutguide/workoutguide.component';
+import { CreateexerciseComponent } from './createexercise/createexercise.component';
 
 const ROUTES: Routes = [
     {
@@ -21,6 +23,14 @@ const ROUTES: Routes = [
     {
         path: 'dashboard',
         component: DashboardComponent
+    },
+    {
+        path: 'workoutguide',
+        component: WorkoutguideComponent
+    },
+    {
+        path: 'createexercise',
+        component: CreateexerciseComponent
     }
 ];
 
