@@ -29,39 +29,56 @@ export class RegisterComponent implements OnInit {
 
   validEmail() {
     console.log('in validEmail()');
+    this.isValidEmail = true;
     this.userService.isEmailAvailable(this.user).subscribe(users => {
       console.log('received respose from call to getUsersByEmail()');
-      if (users !== null) {
-        this.isValidEmail = !this.isValidEmail;
+      // console.log('user email: ' +this.user.email);
+      // console.log('users object returned from database: ' + users.email);
+      if (users.email !== null) {
+        this.isValidEmail = false;
       } else if (!this.validateEmail(this.user.email)) {
-        this.isValidEmail = !this.isValidEmail;
+        this.isValidEmail = false;
+      } 
+      if(this.isValidEmail !== false){
+        this.isValidEmail = true;
       }
     });
-  }
+
+    
+  } 
 
   validateEmail(email: string): boolean {
     const regularExpression = /^([a-zA-Z0-9_\.\-+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-    if (email.length === 0) {
+    console.log(email);
+    if(email !== null && email !== undefined){
+      return regularExpression.test(email);
+    }else{
       return false;
-    }
-    return regularExpression.test(email);
+    } 
   }
 
   validUsername() {
+    this.isValidUsername = true;
     this.userService.isUsernameAvailable(this.user).subscribe(users => {
-      if (users !== null) {
-        this.isValidUsername = !this.isValidUsername;
-      } else if (!this.validateUsername(this.user.username)) {
-        this.isValidUsername = !this.isValidUsername;
+      if (users.username !== null) {
+        this.isValidUsername = false;
+      } else if (this.validateUsername(this.user.username) == false) {
+        this.isValidUsername = false;
       }
+      if(this.isValidUsername !== false){
+        this.isValidUsername = true;
+      } 
     });
+    
   }
 
   validateUsername(username: string): boolean {
-    if (username.length === 0 || username.length > 50) {
+    console.log('username: '+username);
+    if(username !== null && username !== undefined){
+      return true;
+    }else{
       return false;
-    }
-    return true;
+    } 
   }
 
   register() {
@@ -87,16 +104,16 @@ export class RegisterComponent implements OnInit {
 
   validFields(): boolean {
     if (this.user.firstName.length < 2) {
-      this.isValidFirstName = !this.isValidFirstName;
+      this.isValidFirstName = false;;
       return false;
     } else if (!this.phonenumber(this.user.phone)) {
-      this.isValidPhoneNumber = !this.isValidPhoneNumber;
+      this.isValidPhoneNumber = false;;
       return false;
     } else if (this.user.lastName.length < 2) {
-      this.isValidLastName = !this.isValidLastName;
+      this.isValidLastName = false;;
       return false;
     } else if (this.user.password.length < 8) {
-      this.isValidPassword = !this.isValidPassword;
+      this.isValidPassword = false;;
       return false;
     } else {
       return true;
