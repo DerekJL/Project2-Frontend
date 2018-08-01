@@ -20,6 +20,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { WorkoutLandingComponent } from './workout-landing/workout-landing.component';
 import { ExerciselandingComponent } from './exerciselanding/exerciselanding.component';
 import { CreateexerciseComponent } from './createexercise/createexercise.component';
+import { DiscoverComponent } from './discover/discover.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,8 @@ import { CreateexerciseComponent } from './createexercise/createexercise.compone
     WorkoutguideComponent,
     DashboardComponent,
     NavComponent,
+    CreateexerciseComponent,
+    DiscoverComponent,
     SidenavComponent,
     WorkoutLandingComponent,
     ExerciselandingComponent,

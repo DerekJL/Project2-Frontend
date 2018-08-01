@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://localhost:9999/Project2Backend/'
+  apiUrl: 'http://workmeout.us-east-1.elasticbeanstalk.com/'
 };

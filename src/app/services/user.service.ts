@@ -18,11 +18,11 @@ export class UserService {
   subscribers: BehaviorSubject<User> = new BehaviorSubject<User>(null);
 
   /*
-    If a user JSON string already exists in the localStorage, take the user out,
+    If a user JSON string already exists in the sessionStorage, take the user out,
     parse it into an object, then put the user into a BehaviorSubject object
   */
   constructor(private http: HttpClient) {
-    const u = localStorage.getItem('user');
+    const u = sessionStorage.getItem('user');
     if (u !== '{}' && u !== undefined) {
       this.subscribers.next(JSON.parse(u));
     }

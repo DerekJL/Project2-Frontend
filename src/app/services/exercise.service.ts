@@ -18,8 +18,8 @@ const HTTP_OPTIONS = {
 export class ExerciseService {
 
   constructor(private http: HttpClient) {
-    const user = JSON.parse(localStorage.getItem('user'));
-    const workout = JSON.parse(localStorage.getItem('workout'));
+    const user = JSON.parse(sessionStorage.getItem('user'));
+    const workout = JSON.parse(sessionStorage.getItem('workout'));
   }
 
   public getExercisesByWorkoutId(workout_id: number): Observable<Exercise[]> {
@@ -30,10 +30,15 @@ export class ExerciseService {
   public createExercise(exercise: Exercise): Observable<Exercise> {
     console.log(`Attempting to create exercise: ${exercise.exercise_id}`);
     let json = JSON.stringify(exercise);
-    return this.http.post<Exercise>(environment.apiUrl + 'exercise/create', json, HTTP_OPTIONS);
+    return this.http.post<Exercise>(environment.apiUrl + 'exercises/create', json, HTTP_OPTIONS);
   }
 
   public getExercisesByUserId(user_id: number): Observable<Exercise[]> {
-    return this.http.get<Exercise[]>(environment.apiUrl + `/exercises/user/${user_id}`, HTTP_OPTIONS);
+    return this.http.get<Exercise[]>(environment.apiUrl + `exercises/user/${user_id}`, HTTP_OPTIONS);
   }
+  public getAllExercises(): Observable<Exercise[]> {
+    console.log('Attempting to retrieve all exercises');
+    return this.http.get<Exercise[]>(environment.apiUrl + 'exercises');
+  }
+
 }
