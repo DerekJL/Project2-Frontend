@@ -86,13 +86,13 @@ export class RegisterComponent implements OnInit {
   }
 
   validFields(): boolean {
-    if (this.user.firstname.length < 2) {
+    if (this.user.firstName.length < 2) {
       this.isValidFirstName = !this.isValidFirstName;
       return false;
     } else if (!this.phonenumber(this.user.phone)) {
       this.isValidPhoneNumber = !this.isValidPhoneNumber;
       return false;
-    } else if (this.user.lastname.length < 2) {
+    } else if (this.user.lastName.length < 2) {
       this.isValidLastName = !this.isValidLastName;
       return false;
     } else if (this.user.password.length < 8) {
