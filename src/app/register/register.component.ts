@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
 
   user: User = new User();
-  loggedUser = localStorage.getItem('user');
+  // loggedUser = sessionStorage.getItem('user');
   isValidEmail = true;
   isValidUsername = true;
   isValidFirstName = true;
@@ -22,9 +22,9 @@ export class RegisterComponent implements OnInit {
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
-    if (this.loggedUser !== null) {
-      this.router.navigate(['dashboard']);
-    }
+    // if (this.loggedUser !== null) {
+    //   this.router.navigate(['dashboard']);
+    // }
   }
 
   validEmail() {
@@ -69,31 +69,41 @@ export class RegisterComponent implements OnInit {
         if (users === null) {
           // Why would a user return null here?
         } else {
-          localStorage.setItem('user', JSON.stringify(users));
-          console.log(localStorage.getItem('user'));
-          this.router.navigate(['dashboard']);
+          sessionStorage.setItem('user', JSON.stringify(users));
+          console.log(sessionStorage.getItem('user'));
+          this.router.navigate(['login']);
         }
       });
     } else {
       // Something to go here
+      console.log('entered the empty else statement in register()');
+      console.log('valid email: ' + this.isValidEmail);
+      console.log('valid username: ' + this.isValidUsername);
+      console.log('valid fields: ' + this.validFields());
     }
   }
 
-  validFields() {
+  validFields(): boolean {
     if (this.user.firstname.length < 2) {
       this.isValidFirstName = !this.isValidFirstName;
-    } else if (this.phonenumber(!this.user.phone)) {
+      return false;
+    } else if (!this.phonenumber(this.user.phone)) {
       this.isValidPhoneNumber = !this.isValidPhoneNumber;
+      return false;
     } else if (this.user.lastname.length < 2) {
       this.isValidLastName = !this.isValidLastName;
+      return false;
     } else if (this.user.password.length < 8) {
       this.isValidPassword = !this.isValidPassword;
+      return false;
+    }else{
+      return true;
     }
   }
 
   phonenumber(phone) {
     const format = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-    if (phone.value.match(format)) {
+    if (phone.match(format)) {
       return true;
     } else {
       return false;

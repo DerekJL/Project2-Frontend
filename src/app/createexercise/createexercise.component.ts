@@ -13,7 +13,7 @@ export class CreateexerciseComponent implements OnInit {
 
   exercise: Exercise = new Exercise();
   
-  loggedUser = localStorage.getItem('user');
+  loggedUser = sessionStorage.getItem('user');
   user: User = JSON.parse(this.loggedUser);
 
   constructor(private exerciseService: ExerciseService, private router: Router) { }
