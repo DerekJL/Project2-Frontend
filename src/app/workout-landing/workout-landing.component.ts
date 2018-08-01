@@ -18,13 +18,8 @@ export class WorkoutLandingComponent implements OnInit {
   exercises: Exercise[];
   // workout1: Workout = new Workout (1, 1, 1, 1, 'push-ups');
   workout: Workout = new Workout();
-<<<<<<< HEAD
-  loggedUser: User = JSON.parse(localStorage.getItem('user'));
-  constructor(private router: Router, private workoutService: WorkoutService, public modal: Modal,
-=======
   loggedUser: User = JSON.parse(sessionStorage.getItem('user'));
-  constructor(private router: Router, private workoutService: WorkoutService, public modal: Modal, 
->>>>>>> f0e08b9c9a5cf16ea8d16b0a97933f53e76720fc
+  constructor(private router: Router, private workoutService: WorkoutService, public modal: Modal,
     private exerciseService: ExerciseService) { }
 
   ngOnInit() {
