@@ -76,13 +76,14 @@ export class RegisterComponent implements OnInit {
       });
     } else {
       // Something to go here
+      console.log('entered the empty else statement in register()');
     }
   }
 
   validFields() {
     if (this.user.firstname.length < 2) {
       this.isValidFirstName = !this.isValidFirstName;
-    } else if (this.phonenumber(!this.user.phone)) {
+    } else if (!this.phonenumber(this.user.phone)) {
       this.isValidPhoneNumber = !this.isValidPhoneNumber;
     } else if (this.user.lastname.length < 2) {
       this.isValidLastName = !this.isValidLastName;
@@ -93,7 +94,7 @@ export class RegisterComponent implements OnInit {
 
   phonenumber(phone) {
     const format = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-    if (phone.value.match(format)) {
+    if (phone.match(format)) {
       return true;
     } else {
       return false;
