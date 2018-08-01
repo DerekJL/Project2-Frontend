@@ -28,7 +28,9 @@ export class RegisterComponent implements OnInit {
   }
 
   validEmail() {
+    console.log('in validEmail()');
     this.userService.isEmailAvailable(this.user).subscribe(users => {
+      console.log('received respose from call to getUsersByEmail()');
       if (users !== null) {
         this.isValidEmail = !this.isValidEmail;
       } else if (!this.validateEmail(this.user.email)) {
@@ -96,7 +98,7 @@ export class RegisterComponent implements OnInit {
     } else if (this.user.password.length < 8) {
       this.isValidPassword = !this.isValidPassword;
       return false;
-    }else{
+    } else {
       return true;
     }
   }
