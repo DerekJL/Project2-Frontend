@@ -8,7 +8,7 @@ import { User } from '../models/user';
 })
 export class NavComponent implements OnInit {
 
-  loggedUser: User = JSON.parse(localStorage.getItem('user'));
+  loggedUser: User = JSON.parse(sessionStorage.getItem('user'));
 
   constructor() { }
 

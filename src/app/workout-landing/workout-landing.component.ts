@@ -18,7 +18,7 @@ export class WorkoutLandingComponent implements OnInit {
   exercises: Exercise[];
   // workout1: Workout = new Workout (1, 1, 1, 1, 'push-ups');
   workout: Workout = new Workout();
-  loggedUser: User = JSON.parse(localStorage.getItem('user'));
+  loggedUser: User = JSON.parse(sessionStorage.getItem('user'));
   constructor(private router: Router, private workoutService: WorkoutService, public modal: Modal, 
     private exerciseService: ExerciseService) { }
 

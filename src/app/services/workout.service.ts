@@ -17,7 +17,7 @@ const HTTP_OPTIONS = {
 export class WorkoutService {
 
   constructor(private http: HttpClient, private router: Router) {
-    const user = JSON.parse(localStorage.getItem('user'));
+    const user = JSON.parse(sessionStorage.getItem('user'));
   }
 
   public createWorkout(workout: Workout): Observable<Workout> {

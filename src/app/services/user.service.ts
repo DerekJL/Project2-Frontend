@@ -18,11 +18,11 @@ export class UserService {
   subscribers: BehaviorSubject<User> = new BehaviorSubject<User>(null);
 
   /*
-    If a user JSON string already exists in the localStorage, take the user out,
+    If a user JSON string already exists in the sessionStorage, take the user out,
     parse it into an object, then put the user into a BehaviorSubject object
   */
   constructor(private http: HttpClient) {
-    const u = localStorage.getItem('user');
+    const u = sessionStorage.getItem('user');
     if (u !== '{}' && u !== undefined) {
       this.subscribers.next(JSON.parse(u));
     }
@@ -36,7 +36,7 @@ export class UserService {
  public loginUser(user: User) {
    console.log(`Attempting to login user: ${user.username}`);
    let json = JSON.stringify(user);
-   return this.http.post<User>(environment.apiUrl + 'user/login', json, HTTP_OPTIONS);
+   return this.http.post<User>(environment.apiUrl + 'users/login', json, HTTP_OPTIONS);
  }
 
  public registerUser(user: User): Observable<User> {
@@ -44,17 +44,17 @@ export class UserService {
    const json = JSON.stringify(user);
   //  const emailAvailable = this.isEmailAvailable(user.email);
   //  const usernameAvailable = this.isUsernameAvailable(user.username);
-  return this.http.post<User>(environment.apiUrl + 'user/register', json, HTTP_OPTIONS);
+  return this.http.post<User>(environment.apiUrl + 'users/register', json, HTTP_OPTIONS);
  }
 
  public isEmailAvailable(user: User): Observable<User> {
    const json = JSON.stringify(user);
-   return this.http.post<User>(environment.apiUrl + 'user/email', json, HTTP_OPTIONS);
+   return this.http.post<User>(environment.apiUrl + 'users/emails', json, HTTP_OPTIONS);
  }
 
  public isUsernameAvailable(user: User): Observable<User> {
    const json = JSON.stringify(user);
-   return this.http.post<User>(environment.apiUrl + 'user/username', json, HTTP_OPTIONS);
+   return this.http.post<User>(environment.apiUrl + 'users/usernames', json, HTTP_OPTIONS);
  }
 }
 

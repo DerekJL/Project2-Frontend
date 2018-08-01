@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   user: User = new User();
-  loggedUser = localStorage.getItem('user');
+  loggedUser = sessionStorage.getItem('user');
   isValid = true;
 
   constructor(private userService: UserService, private router: Router) { }
@@ -28,9 +28,9 @@ export class LoginComponent implements OnInit {
         this.isValid = !this.isValid;
       } else {
         this.userService.subscribers.next(users);
-        localStorage.setItem('user', JSON.stringify(users));
+        sessionStorage.setItem('user', JSON.stringify(users));
         console.log(`User, ${this.user.username}, successfully logged in!`);
-        console.log(localStorage.getItem('user'));
+        console.log(sessionStorage.getItem('user'));
         this.router.navigate(['dashboard']);
       }
     });

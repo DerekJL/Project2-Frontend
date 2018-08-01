@@ -18,7 +18,7 @@ export class DashboardComponent implements OnInit {
   workouts: Workout[] = [];
   // exercise1: Exercise = new Exercise (1, 'pushup', 1, 'pushup', 1, 1, 1, 1, 1);
   exercises: Exercise[];
-  loggedUser = JSON.parse(localStorage.getItem('user'));
+  loggedUser = JSON.parse(sessionStorage.getItem('user'));
 
   constructor(private router: Router, private workoutService: WorkoutService) { }
 

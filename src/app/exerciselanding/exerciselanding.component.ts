@@ -12,7 +12,7 @@ import { ExerciseService } from '../services/exercise.service';
 export class ExerciselandingComponent implements OnInit {
 
   exercises: Exercise[];
-  loggedUser: User = JSON.parse(localStorage.getItem('user'));
+  loggedUser: User = JSON.parse(sessionStorage.getItem('user'));
 
   constructor(private router: Router, private exerciseService: ExerciseService) {}
 

@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
 
   user: User = new User();
-  loggedUser = localStorage.getItem('user');
+  loggedUser = sessionStorage.getItem('user');
   isValidEmail = true;
   isValidUsername = true;
   isValidFirstName = true;
@@ -69,8 +69,8 @@ export class RegisterComponent implements OnInit {
         if (users === null) {
           // Why would a user return null here?
         } else {
-          localStorage.setItem('user', JSON.stringify(users));
-          console.log(localStorage.getItem('user'));
+          sessionStorage.setItem('user', JSON.stringify(users));
+          console.log(sessionStorage.getItem('user'));
           this.router.navigate(['dashboard']);
         }
       });

@@ -18,8 +18,8 @@ const HTTP_OPTIONS = {
 export class ExerciseService {
 
   constructor(private http: HttpClient) {
-    const user = JSON.parse(localStorage.getItem('user'));
-    const workout = JSON.parse(localStorage.getItem('workout'));
+    const user = JSON.parse(sessionStorage.getItem('user'));
+    const workout = JSON.parse(sessionStorage.getItem('workout'));
   }
 
   public getExercisesByWorkoutId(workout_id: number): Observable<Workout> {
