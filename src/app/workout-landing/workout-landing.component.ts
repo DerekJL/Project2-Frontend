@@ -19,7 +19,7 @@ export class WorkoutLandingComponent implements OnInit {
   // workout1: Workout = new Workout (1, 1, 1, 1, 'push-ups');
   workout: Workout = new Workout();
   loggedUser: User = JSON.parse(localStorage.getItem('user'));
-  constructor(private router: Router, private workoutService: WorkoutService, public modal: Modal, 
+  constructor(private router: Router, private workoutService: WorkoutService, public modal: Modal,
     private exerciseService: ExerciseService) { }
 
   ngOnInit() {
@@ -64,7 +64,7 @@ export class WorkoutLandingComponent implements OnInit {
     this.modal.alert()
     .size('lg')
     .isBlocking(true)
-    .showClose(true)
+    .showClose(false)
     .keyboard(27)
     .title(workout.workout_name)
     .body('<ul>' + numExercises + this.listExercises() + '</ul>')

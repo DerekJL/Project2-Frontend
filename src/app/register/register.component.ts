@@ -28,7 +28,9 @@ export class RegisterComponent implements OnInit {
   }
 
   validEmail() {
+    console.log('in validEmail()');
     this.userService.isEmailAvailable(this.user).subscribe(users => {
+      console.log('received respose from call to getUsersByEmail()');
       if (users !== null) {
         this.isValidEmail = !this.isValidEmail;
       } else if (!this.validateEmail(this.user.email)) {
@@ -82,7 +84,7 @@ export class RegisterComponent implements OnInit {
   validFields() {
     if (this.user.firstname.length < 2) {
       this.isValidFirstName = !this.isValidFirstName;
-    } else if (this.phonenumber(!this.user.phone)) {
+    } else if (this.phonenumber !== undefined && this.phonenumber(!this.user.phone)) {
       this.isValidPhoneNumber = !this.isValidPhoneNumber;
     } else if (this.user.lastname.length < 2) {
       this.isValidLastName = !this.isValidLastName;

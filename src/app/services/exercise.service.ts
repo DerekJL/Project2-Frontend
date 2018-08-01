@@ -22,9 +22,9 @@ export class ExerciseService {
     const workout = JSON.parse(localStorage.getItem('workout'));
   }
 
-  public getExercisesByWorkoutId(workout_id: number): Observable<Workout> {
+  public getExercisesByWorkoutId(workout_id: number): Observable<Exercise[]> {
     console.log(`Attempting to retrieve exercises by workout: ${workout_id}`);
-    return this.http.get<Workout>(environment.apiUrl + `exercises/${workout_id}`, HTTP_OPTIONS);
+    return this.http.get<Exercise[]>(environment.apiUrl + `exercises/${workout_id}`, HTTP_OPTIONS);
   }
 
   public createExercise(exercise: Exercise): Observable<Exercise> {
@@ -33,5 +33,7 @@ export class ExerciseService {
     return this.http.post<Exercise>(environment.apiUrl + 'exercise/create', json, HTTP_OPTIONS);
   }
 
-
+  public getExercisesByUserId(user_id: number): Observable<Exercise[]> {
+    return this.http.get<Exercise[]>(environment.apiUrl + `/exercises/user/${user_id}`, HTTP_OPTIONS);
+  }
 }
