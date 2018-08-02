@@ -36,9 +36,5 @@ export class WorkoutService {
     return this.http.get<Workout[]>(environment.apiUrl + 'workouts');
   }
 
-  public startWorkout(workout: Workout) {
-    let workoutString = JSON.stringify(workout);
-    sessionStorage.setItem('workout', workoutString);
-    this.router.navigate(['workoutguide']);
-  }
+  
 }
