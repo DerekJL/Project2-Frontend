@@ -103,21 +103,32 @@ export class RegisterComponent implements OnInit {
   }
 
   validFields(): boolean {
+    let returningBool = true;
     if (this.user.firstName.length < 2) {
-      this.isValidFirstName = false;;
-      return false;
-    } else if (!this.phonenumber(this.user.phone)) {
-      this.isValidPhoneNumber = false;;
-      return false;
-    } else if (this.user.lastName.length < 2) {
-      this.isValidLastName = false;;
-      return false;
-    } else if (this.user.password.length < 8) {
-      this.isValidPassword = false;;
-      return false;
-    } else {
-      return true;
+      this.isValidFirstName = false;
+      returningBool = false;
+    } else{
+      this.isValidFirstName = true;
     }
+    if (!this.phonenumber(this.user.phone)) {
+      this.isValidPhoneNumber = false;
+      returningBool = false;
+    } else{
+      this.isValidPhoneNumber = true;
+    }
+    if (this.user.lastName.length < 2) {
+      this.isValidLastName = false;
+      returningBool = false;
+    } else{
+      this.isValidLastName = true;
+    }
+    if (this.user.password.length < 8) {
+      this.isValidPassword = false;
+      returningBool = false;
+    } else{
+      this.isValidPassword = true;
+    }
+    return returningBool;
   }
 
   phonenumber(phone) {
