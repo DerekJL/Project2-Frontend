@@ -1,4 +1,64 @@
-<h1>Create New Exercise</h1>
+<div class="container">
+    <form id="createexercise-form"role="form" >
+      <h2 class="text-center">Create New Exercise</h2>
+      <br/>
+    
+      <div class="form-group">
+        <label for="exercise_name">Exercise Name</label>
+        <input type="text" class="form-control" id="exercise_name" name="exercise_name" placeholder="Exercise Name" [(ngModel)]="exercise.exercise_name">
+      </div>
+      <div *ngIf="!isValidName" class="alert alert-danger" id="formError">
+        Exercise name must be at least 1 character.
+      </div>
+    
+      <div class="form-group">
+        <label for="exercise_description">Description</label>
+        <input type="text" class="form-control" id="exercise_description" name="exercise.exercise_description" placeholder="Description" [(ngModel)]="exercise.exercise_description">
+      </div>
+      <!-- <div *ngIf="!isValidDescription" class="alert alert-danger" id="formError">
+        Description must be atleast 1 character.
+      </div> -->
+    
+      <div class="form-group">
+        <label for="exercise_sets">Sets</label>
+        <input type="number" class="form-control" id="exercise_sets" name="exercise.exercise_sets" placeholder="Sets" [(ngModel)]="exercise.exercise_sets">
+      </div>
+      <div *ngIf="!isValidSets" class="alert alert-danger" id="formError">
+        Please enter the number of sets for this exercise.
+      </div>
+
+      <div class="form-group">
+        <label for="exercise_reps">Reps</label>
+        <input type="number" class="form-control" id="exercise_reps" name="exercise.exercise_reps" placeholder="Reps" [(ngModel)]="exercise.exercise_reps">
+      </div>
+      <div *ngIf="!isValidReps" class="alert alert-danger" id="formError">
+        Please enter the number of reps for this exercise.
+      </div>
+    
+      <div class="form-group">
+        <label for="exercise_duration">Set Duration (seconds)</label>
+        <input type="number" class="form-control" id="exercise_duration" name="exercise.exercise_duration" placeholder="Set Duration" [(ngModel)]="exercise.exercise_duration">
+      </div>
+      <div *ngIf="!isValidDuration" class="alert alert-danger" id="formError">
+        Please enter a duration for each set.
+      </div>
+    
+      <div class="form-group">
+        <label for="exercise_rest">Rest Duration After Each Set (seconds)</label>
+        <input type="text" class="form-control" id="exercise_rest" name="exercise.exercise_rest" placeholder="Rest Duration" [(ngModel)]="exercise.exercise_rest">
+      </div>
+      <div *ngIf="!isValidRest" class="alert alert-danger" id="formError">
+        Please enter a duration to rest between sets.
+      </div>
+      
+      <div class="justify-content-center">
+        <button type="submit" class="btn btn-createexercise" id="createexercise" (click)="addExercise()">Create Exercise</button>
+      </div>
+    </form>
+    </div>
+
+
+<!-- <h1>Create New Exercise</h1>
 <label for="exercisename">Name:</label>
 <input id="exercisename" type="text" [(ngModel)] = "exercise.exercise_name">
 
@@ -17,4 +77,4 @@
 <label for="setrest">Rest Duration After Set:</label>
 <input id="setrest" type="text" [(ngModel)] = "exercise.exercise_rest">
 
-<button id="createexercise" (click)="addExercise()"></button>
+<button id="createexercise" (click)="addExercise()"></button> -->

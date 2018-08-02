@@ -28,7 +28,7 @@ export class ExerciseService {
   }
 
   public createExercise(exercise: Exercise): Observable<Exercise> {
-    console.log(`Attempting to create exercise: ${exercise.exercise_id}`);
+    console.log(`Attempting to create exercise`)//: ${exercise.exercise_id}`);
     let json = JSON.stringify(exercise);
     return this.http.post<Exercise>(environment.apiUrl + 'exercises/create', json, HTTP_OPTIONS);
   }

@@ -41,4 +41,8 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+  createExercise(){
+    this.router.navigate(['createexercise']);
+  }
+
 }

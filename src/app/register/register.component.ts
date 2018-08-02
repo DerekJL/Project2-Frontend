@@ -95,7 +95,7 @@ export class RegisterComponent implements OnInit {
       });
     } else {
       // Something to go here
-      console.log('entered the empty else statement in register()');
+      console.log('entered the empty else statement in register() because an input was not valid');
       console.log('valid email: ' + this.isValidEmail);
       console.log('valid username: ' + this.isValidUsername);
       console.log('valid fields: ' + this.validFields());
