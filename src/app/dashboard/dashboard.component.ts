@@ -5,6 +5,7 @@ import { Workout } from '../models/workout';
 import { UserService } from '../services/user.service';
 import { WorkoutService } from '../services/workout.service';
 import { Exercise } from '../models/exercise';
+import { ExerciseService } from '../services/exercise.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,20 +18,27 @@ export class DashboardComponent implements OnInit {
   // workout1: Workout = new Workout (1, 1, 1, 1, 'push-ups');
   workouts: Workout[] = [];
   // exercise1: Exercise = new Exercise (1, 'pushup', 1, 'pushup', 1, 1, 1, 1, 1);
-  exercises: Exercise[];
-  loggedUser = JSON.parse(sessionStorage.getItem('user'));
+  exercises: Exercise[] = [];
+  numWorkouts: number;
+  numExercises: number;
+  loggedUser: User = JSON.parse(sessionStorage.getItem('user'));
 
-  constructor(private router: Router, private workoutService: WorkoutService) { }
+  constructor(private router: Router, private workoutService: WorkoutService, private exerciseService: ExerciseService) { }
 
   ngOnInit() {
-    // if (this.loggedUser === null) {
-    //   this.router.navigate(['login']);
-    // } else {
-    //   this.user = this.loggedUser;
-    //   this.workoutService.getWorkoutByUserId(this.user.user_id).subscribe(obsworkouts => {
-    //     this.workouts.push(obsworkouts);
-    //   });
-    // }
+    if (this.loggedUser === null) {
+      this.router.navigate(['login']);
+    } else {
+      this.user = this.loggedUser;
+      this.workoutService.getWorkoutsByUserId(this.user.user_id).subscribe(response => {
+        this.workouts = response;
+      });
+      this.exerciseService.getExercisesByUserId(this.user.user_id).subscribe(response => {
+        this.exercises = response;
+      });
+      this.numWorkouts = (this.workouts === undefined) ? 0 : this.workouts.length;
+      this.numExercises = (this.exercises === undefined) ? 0 : this.exercises.length;
+    }
   }
 
 }

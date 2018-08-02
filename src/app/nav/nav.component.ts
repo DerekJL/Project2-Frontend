@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user';
 import { Router } from '../../../node_modules/@angular/router';
+import { NavService } from '../services/nav.service';
 
 @Component({
   selector: 'app-nav',
@@ -11,13 +12,13 @@ export class NavComponent implements OnInit {
 
   loggedUser: User = JSON.parse(sessionStorage.getItem('user'));
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private nav: NavService) { }
 
   ngOnInit() {
   }
 
-  logout(){
-    this.loggedUser = null;
+  logout() {
+    sessionStorage.setItem('user', null);
     this.router.navigate(['login']);
   }
 }
