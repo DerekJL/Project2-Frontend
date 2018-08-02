@@ -34,7 +34,7 @@ export class ExerciseService {
   }
 
   public getExercisesByUserId(user_id: number): Observable<Exercise[]> {
-    return this.http.get<Exercise[]>(environment.apiUrl + `exercises/user/${user_id}`, HTTP_OPTIONS);
+    return this.http.get<Exercise[]>(environment.apiUrl + `exercises/users/${user_id}`, HTTP_OPTIONS);
   }
   public getAllExercises(): Observable<Exercise[]> {
     console.log('Attempting to retrieve all exercises');

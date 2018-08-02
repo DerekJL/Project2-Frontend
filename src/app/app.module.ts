@@ -21,6 +21,7 @@ import { WorkoutLandingComponent } from './workout-landing/workout-landing.compo
 import { ExerciselandingComponent } from './exerciselanding/exerciselanding.component';
 import { CreateexerciseComponent } from './createexercise/createexercise.component';
 import { DiscoverComponent } from './discover/discover.component';
+import { NavService } from './services/nav.service';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,7 @@ import { DiscoverComponent } from './discover/discover.component';
     BootstrapModalModule
   ],
   providers: [
-    UserService, WorkoutService, ExerciseService
+    UserService, WorkoutService, ExerciseService, NavService
   ],
   bootstrap: [AppComponent]
 })

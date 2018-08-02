@@ -26,14 +26,14 @@ export class WorkoutService {
     return this.http.post<Workout>(environment.apiUrl + 'workouts', json, HTTP_OPTIONS);
   }
 
-  public getWorkoutByUserId(user_id: number): Observable<Workout> {
+  public getWorkoutsByUserId(user_id: number): Observable<Workout[]> {
     console.log(`Attempting to retrieve workouts by user: ${user_id}`);
-    return this.http.get<Workout>(environment.apiUrl + `workouts/user/${user_id}`, HTTP_OPTIONS);
+    return this.http.get<Workout[]>(environment.apiUrl + `workouts/users/${user_id}`, HTTP_OPTIONS);
   }
 
-  public getAllWorkouts(): Observable<Workout> {
+  public getAllWorkouts(): Observable<Workout[]> {
     console.log('Attempting to retrieve all workouts');
-    return this.http.get<Workout>(environment.apiUrl + 'workouts');
+    return this.http.get<Workout[]>(environment.apiUrl + 'workouts');
   }
 
   public startWorkout(workout: Workout) {
