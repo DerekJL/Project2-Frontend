@@ -25,8 +25,11 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.userService.loginUser(this.user).subscribe(users => {
+      console.log(users);
       if (users === null || users.user_id === 0) {
-        this.isValid = !this.isValid;
+        this.isValid = false;
+      } else if (this.user.password !== users.password) {
+        this.isValid = false;
       } else {
         this.userService.subscribers.next(users);
         sessionStorage.setItem('user', JSON.stringify(users));

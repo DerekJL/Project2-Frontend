@@ -21,7 +21,7 @@ export class WorkoutService {
   }
 
   public createWorkout(workout: Workout): Observable<Workout> {
-    console.log(`Attempting to create workout`) //${workout.workout_id}`);
+    console.log(`Attempting to create workout`); // ${workout.workout_id}`);
     let json = JSON.stringify(workout);
     return this.http.post<Workout>(environment.apiUrl + 'workouts/create', json, HTTP_OPTIONS);
   }
@@ -36,5 +36,7 @@ export class WorkoutService {
     return this.http.get<Workout[]>(environment.apiUrl + 'workouts');
   }
 
-  
+  public getWorkoutById(id: number): Observable<Workout> {
+    return this.http.get<Workout>(environment.apiUrl + `workouts/${id}`, HTTP_OPTIONS);
+  }
 }
