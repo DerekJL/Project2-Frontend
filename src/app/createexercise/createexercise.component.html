@@ -11,6 +11,33 @@
         Exercise name must be at least 1 character.
       </div>
     
+      <div class="row">
+        <div class="col">
+          <div ngbDropdown class="d-inline-block">
+            <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>{{buttonDisplay}}</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <button id="type1"class="dropdown-item" (click)="typeOne()">Upper Body</button>
+              <button id="type2"class="dropdown-item" (click)="typeTwo()">Lower Body</button>
+              <button id="type3"class="dropdown-item" (click)="typeThree()">Full Body</button>
+              <button id="type4"class="dropdown-item" (click)="typeFour()">Chest</button>
+              <button id="type5"class="dropdown-item" (click)="typeFive()">Back</button>
+              <button id="type6"class="dropdown-item" (click)="typeSix()">Bicepts</button>
+              <button id="type7"class="dropdown-item" (click)="typeSeven()">Tricepts</button>
+              <button id="type8"class="dropdown-item" (click)="typeEight()">Shoulders</button>
+              <button id="type9"class="dropdown-item" (click)="typeNine()">Abs</button>
+              <button id="type10"class="dropdown-item" (click)="typeTen()">Glutes</button>
+              <button id="type11"class="dropdown-item" (click)="typeEleven()">Hamstrings</button>
+              <button id="type12"class="dropdown-item" (click)="typeTwelve()">Quads</button>
+              <button id="type13"class="dropdown-item" (click)="typeThirteen()">Calves</button>
+              <button id="type14"class="dropdown-item" (click)="typeFourteen()">Cardio</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="!isValidType" class="alert alert-danger" id="formError">
+        Please select an exercise type.
+      </div>
+
       <div class="form-group">
         <label for="exercise_description">Description</label>
         <input type="text" class="form-control" id="exercise_description" name="exercise.exercise_description" placeholder="Description" [(ngModel)]="exercise.exercise_description">
@@ -55,6 +82,11 @@
         <button type="submit" class="btn btn-createexercise" id="createexercise" (click)="addExercise()">Create Exercise</button>
       </div>
     </form>
+
+    <div class="justify-content-center">
+      <button type="submit" class="btn btn-testcreateworkout" id="testcreateworkout" (click)="testSubmitWorkout()">test submit workout</button>
+    </div>
+
     </div>
 
 

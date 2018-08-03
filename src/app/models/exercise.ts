@@ -8,7 +8,7 @@ export class Exercise {
     exercise_duration: number;
     exercise_rest: number;
     user_id: number;
-    visibility: number;
+    //visibility: number;
 
     // constructor (id: number, name: string, type: number, descr: string, sets: number,
     //     reps: number, dura: number, user: number, vis: number) {

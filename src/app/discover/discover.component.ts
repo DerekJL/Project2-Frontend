@@ -85,5 +85,4 @@ export class DiscoverComponent implements OnInit {
     }
     return returnString;
   }
-
 }
