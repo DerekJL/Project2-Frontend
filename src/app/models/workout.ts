@@ -7,6 +7,7 @@ export class Workout {
     workout_description: string;
     queued_workout: number;
     exercises = [];
+    
     // constructor(id: number, type: number, user_id: number, visibility: number, name: string) {
     //     this.workout_id = id;
     //     this.type_id = type;

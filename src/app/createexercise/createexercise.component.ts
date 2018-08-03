@@ -154,7 +154,6 @@ export class CreateexerciseComponent implements OnInit {
     this.buttonDisplay = "Cardio";
     this.exercise.type_id = 14;
   }
- 
 
   testSubmitWorkout(){
 
