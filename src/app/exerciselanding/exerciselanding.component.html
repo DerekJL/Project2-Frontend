@@ -4,8 +4,8 @@
     <br>
     <p class="lead text-muted">View Your Current Exercises or Create a New One to Add to a Workout</p>
   </div>
-  <div class="card-deck"  *ngFor="let exercise of exercises">
-    <div class="card border-info mb-3" style="max-width: 18rem">
+  <div class="card-deck">
+    <div class="card border-info mb-3" style="max-width: 18rem" *ngFor="let exercise of exercises">
       <div class="card-body text-info">
         <h5 class="card-title">{{exercise.exercise_name}}</h5>
         <p class="card-text">Description: {{exercise.exercise_description}}</p>

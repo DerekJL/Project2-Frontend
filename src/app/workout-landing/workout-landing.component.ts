@@ -23,20 +23,18 @@ export class WorkoutLandingComponent implements OnInit {
     private exerciseService: ExerciseService) { }
 
   ngOnInit() {
-    // this.workoutService.getWorkoutByUserId(this.loggedUser.user_id).subscribe(response => {
-    //   this.workouts = JSON.parse(<any>response);
-    // });
-    this.workout.workout_name = 'pushups';
-    this.workout.user_id = 1;
-    this.workout.type_id = 1;
-    this.workouts = [this.workout];
+    if (this.loggedUser !== null || this.loggedUser !== undefined) {
+      this.workoutService.getWorkoutsByUserId(this.loggedUser.user_id).subscribe(response => {
+        this.workouts = response;
+      });
+    }
   }
 
   startWorkout(workout: Workout) {
-    //set workout to session storage
+    // set workout to session storage
     let workoutString = JSON.stringify(workout);
     sessionStorage.setItem('workout', workoutString);
-    //can also change workout flag if have time to implement backend text based workout
+    // can also change workout flag if have time to implement backend text based workout
     this.router.navigate(['workoutguide']);
   }
 
