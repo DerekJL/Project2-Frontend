@@ -23,7 +23,7 @@ export class ExerciselandingComponent implements OnInit {
 
   getExercises(user_id: number) {
     this.exerciseService.getExercisesByUserId(user_id).subscribe(response => {
-      this.exercises = JSON.parse(<any>response);
+      this.exercises = response;
     });
   }
 

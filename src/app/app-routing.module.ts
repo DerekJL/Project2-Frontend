@@ -8,6 +8,7 @@ import { ExerciselandingComponent } from './exerciselanding/exerciselanding.comp
 import { WorkoutguideComponent } from './workoutguide/workoutguide.component';
 import { CreateexerciseComponent } from './createexercise/createexercise.component';
 import { DiscoverComponent } from './discover/discover.component';
+import { CreateworkoutComponent } from './createworkout/createworkout.component';
 
 const ROUTES: Routes = [
     {
@@ -46,6 +47,10 @@ const ROUTES: Routes = [
     {
         path: 'discover',
         component: DiscoverComponent
+    },
+    {
+        path: 'createworkout',
+        component: CreateworkoutComponent
     }
 ];
 
