@@ -5,6 +5,7 @@ import { Exercise } from '../models/exercise';
 import { User } from '../models/user';
 import { Workout } from '../models/workout';
 import { WorkoutService } from '../services/workout.service';
+import { WorkoutExercise } from '../models/workoutexercise';
 
 @Component({
   selector: 'app-createexercise',
@@ -14,7 +15,7 @@ import { WorkoutService } from '../services/workout.service';
 export class CreateexerciseComponent implements OnInit {
 
   exercise: Exercise = new Exercise();
-  workout: Workout = new Workout();
+  exercisesForJunction: WorkoutExercise[] = [];
 
   loggedUser = sessionStorage.getItem('user');
   user: User = JSON.parse(this.loggedUser);
@@ -155,32 +156,39 @@ export class CreateexerciseComponent implements OnInit {
     this.exercise.type_id = 14;
   }
 
+  //workout object
+  workout: Workout = new Workout();
+  //exercise array
+  exercises: Exercise[] = [];
+
   testSubmitWorkout(){
 
+    //creates a workout for testing
+    //out of testing you just need access to the workout object that's full of the user input. You can also fill in other variables here if they arent populated already such as userid and workout visibility
     this.workout.type_id = 1;
     this.workout.user_id = 2;
     this.workout.workout_visibility = 1;
     this.workout.workout_description = "this is another workout description";
     this.workout.workout_name = "test workout name 2";
     this.workout.queued_workout = 1;
-
+    
+    //adds exercises to the exercise array for testing
+    //out of testing you just need access to the exercise array that you pushed the user chosen exercises to.
     for (let i = 0; i < 3; i++){
-      let ex = new Exercise();
-      ex.user_id = 2;
-      ex.type_id = i;
-      ex.exercise_sets = 6;
-      ex.exercise_rest = 90;
-      ex.exercise_reps = 5;
-      ex.exercise_name = 'test exercise ' +50+ ' name';
-      ex.exercise_id = 1;
-      ex.exercise_duration = 60;
-      ex.exercise_description = 'test 2 exercise description';
-      this.workout.exercises.push(ex);
+    let ex = new Exercise();
+    ex.user_id = 1;
+    ex.type_id = 2;
+    ex.exercise_sets = 6;
+    ex.exercise_rest = 90;
+    ex.exercise_reps = 5;
+    ex.exercise_name = 'test ' + i +' exercise name';
+    ex.exercise_id = 1;
+    ex.exercise_duration = 60;
+    ex.exercise_description = 'test exercise description';
+    this.exercises.push(ex);
     }
 
-    console.log('this workout: '+this.workout.workout_name);
-    console.log('exercise array: '+this.workout.exercises[1].exercise_name);
-    
+    //add workout to database
     this.workoutService.createWorkout(this.workout).subscribe((workouts) => {
       //check if exercise was created successfully
       if(workouts === null || workouts === undefined){
@@ -188,7 +196,39 @@ export class CreateexerciseComponent implements OnInit {
       }else{
         console.log('workout created successfully');
         console.log(JSON.stringify(workouts));
+        //set the workout id to this.workouts.workout_id
+        this.workout.workout_id = workouts.workout_id;
+
+        //now add a workoutexercise object to the junction table for each exercise in the workout
+        for (let i = 0; i < this.exercises.length; i ++){
+          //create WorkoutExercise object
+          let workoutExercise = new WorkoutExercise();
+
+          //fill the WorkoutExercise object with exercise values and workout id
+          workoutExercise.exercise_id = this.exercises[i].exercise_id;
+          workoutExercise.exercise_description = this.exercises[i].exercise_description;
+          workoutExercise.exercise_duration = this.exercises[i].exercise_duration;
+          workoutExercise.exercise_name = this.exercises[i].exercise_name;
+          workoutExercise.exercise_reps = this.exercises[i].exercise_reps;
+          workoutExercise.exercise_rest = this.exercises[i].exercise_rest;
+          workoutExercise.exercise_sets = this.exercises[i].exercise_sets;
+          workoutExercise.type_id = this.exercises[i].type_id;
+          workoutExercise.user_id = this.exercises[i].user_id;
+          workoutExercise.workout_id = this.workout.workout_id;
+    
+          //call service to send to junction table
+          this.workoutService.createWorkoutExercise(workoutExercise).subscribe((response) => {
+            //check if workoutexercise was created successfully in the junction table
+            if(response === null || response === undefined){
+              console.log('workoutexercise was not created or returned successfully');
+            }else{
+              console.log('workoutexercise created successfully');
+              console.log(JSON.stringify(response));
+            }
+          });
+        } 
+
       }
-  });
+    });     
   }
 }

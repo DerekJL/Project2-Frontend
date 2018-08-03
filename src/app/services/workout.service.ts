@@ -4,6 +4,7 @@ import { Workout } from '../models/workout';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Router } from '../../../node_modules/@angular/router';
+import { WorkoutExercise } from '../models/workoutexercise';
 
 const HTTP_OPTIONS = {
   headers: new HttpHeaders({
@@ -36,5 +37,11 @@ export class WorkoutService {
     return this.http.get<Workout[]>(environment.apiUrl + 'workouts');
   }
 
+  public createWorkoutExercise(workoutExercise: WorkoutExercise): Observable<WorkoutExercise>{
+
+    console.log(`Attempting to create workoutexercise`) //${workout.workout_id}`);
+    let json = JSON.stringify(workoutExercise);
+    return this.http.post<WorkoutExercise>(environment.apiUrl + 'workouts/createjunction', json, HTTP_OPTIONS);
+  }
   
 }
