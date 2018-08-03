@@ -15,6 +15,7 @@ export class DiscoverComponent implements OnInit {
 
   workoutList: Workout[];
   exerciseList: Exercise[];
+  workoutExercises: Exercise[];
 
   constructor(private workoutService: WorkoutService, private exerciseService: ExerciseService, private router: Router, public modal: Modal) { }
 
@@ -27,25 +28,29 @@ export class DiscoverComponent implements OnInit {
 
   getWorkoutList(){
     this.workoutService.getAllWorkouts().subscribe(workouts => {
-      this.workoutList = JSON.parse(<any>workouts);
+      this.workoutList = workouts;
       console.log(this.workoutList);
     })
   }
 
   getExerciseList(){
     this.exerciseService.getAllExercises().subscribe(exercises => {
-      this.exerciseList = JSON.parse(<any>exercises);
+      this.exerciseList = exercises;
       console.log(this.exerciseList);
     })
   }
 
   startWorkout(workout: Workout) {
-    this.workoutService.startWorkout(workout);
+    //set workout to session storage
+    let workoutString = JSON.stringify(workout);
+    sessionStorage.setItem('workout', workoutString);
+    //can also change workout flag if have time to implement backend text based workout
+    this.router.navigate(['workoutguide']);
   }
 
   openWorkoutModal(workout: Workout) {
-    this.getExercises(workout.workout_id);
-    let numExercises = '<li>' + this.exerciseList.length + '</li>';
+    this.getWorkoutExercises(workout.workout_id);
+    let numExercises = '<li>' + this.workoutExercises.length + '</li>';
     this.modal .alert()
     .size('lg')
     .isBlocking(true)
@@ -63,30 +68,21 @@ export class DiscoverComponent implements OnInit {
     .showClose(false)
     .keyboard(27)
     .title(exercise.exercise_name)
-    .body('<ul><li>Sets: '+exercise.exercise_sets+'</li><li>Reps: '+exercise.exercise_reps+'</li><li>Duration: '+exercise.exercise_duration+'</li></ul>')
+    .body('<ul><li>Sets: '+exercise.exercise_sets+'</li><li>Reps: '+exercise.exercise_reps+'</li><li>Duration: '+exercise.exercise_duration+' seconds</li><li>Rest: '+exercise.exercise_rest+' seconds</li></ul>')
     .open();
   }
 
-  getExercises(id: number) {
+  getWorkoutExercises(id: number) {
     this.exerciseService.getExercisesByWorkoutId(id).subscribe(response => {
-      this.exerciseList = JSON.parse(<any>response);
+      this.workoutExercises = response;
     });
-  }
-
-  getNumberOfExercises(id: number) {
-    let exercisesForWorkout: Exercise[];
-    this.exerciseService.getExercisesByWorkoutId(id).subscribe(response => {
-      exercisesForWorkout = JSON.parse(<any>response);
-    });
-    return exercisesForWorkout.length;
   }
 
   listExercises() {
     let returnString: string;
-    for (let exercise of this.exerciseList) {
+    for (let exercise of this.workoutExercises) {
       returnString.concat('<li>' + exercise.exercise_name + '</li>');
     }
     return returnString;
   }
-
 }

@@ -33,7 +33,11 @@ export class WorkoutLandingComponent implements OnInit {
   }
 
   startWorkout(workout: Workout) {
-    this.workoutService.startWorkout(workout);
+    //set workout to session storage
+    let workoutString = JSON.stringify(workout);
+    sessionStorage.setItem('workout', workoutString);
+    //can also change workout flag if have time to implement backend text based workout
+    this.router.navigate(['workoutguide']);
   }
 
   getExercises(id: number) {
