@@ -24,19 +24,18 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.userService.loginUser(this.user).subscribe(users => {
-      console.log(users);
-      if (users === null || users.user_id === 0) {
-        this.isValid = false;
-      } else if (this.user.password !== users.password) {
+    this.userService.loginUser(this.user).subscribe(response1 => {
+      console.log(response1);
+      if (!response1) {
         this.isValid = false;
       } else {
-        this.userService.subscribers.next(users);
-        sessionStorage.setItem('user', JSON.stringify(users));
-        console.log(`User, ${this.user.username}, successfully logged in!`);
-        console.log(sessionStorage.getItem('user'));
-        this.nav.updateNav();
-        this.router.navigate(['dashboard']);
+        this.userService.getUserByUsername(this.user).subscribe(response2 => {
+          this.user = response2;
+          sessionStorage.setItem('user', JSON.stringify(this.user));
+          console.log(sessionStorage.getItem('user'));
+          this.nav.updateNav();
+          this.router.navigate(['dashboard']);
+        });
       }
     });
   }
