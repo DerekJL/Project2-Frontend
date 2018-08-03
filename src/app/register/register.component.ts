@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
 
   user: User = new User();
-  // loggedUser = sessionStorage.getItem('user');
+  loggedUser = sessionStorage.getItem('user');
   isValidEmail = true;
   isValidUsername = true;
   isValidFirstName = true;
@@ -22,9 +22,9 @@ export class RegisterComponent implements OnInit {
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
-    // if (this.loggedUser !== null) {
-    //   this.router.navigate(['dashboard']);
-    // }
+    if (this.loggedUser !== null) {
+      this.router.navigate(['dashboard']);
+    }
   }
 
   validEmail() {
