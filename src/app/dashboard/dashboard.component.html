@@ -20,7 +20,7 @@
 <div class="album py-5 bg-light">
   <div class="container">
 
-  <div class="row justify-content-center">
+  <div class="row justify-content-center card-deck">
       <div class="col-md-6">
           <div class="card text-center">
             <div class="card-body">
@@ -28,19 +28,21 @@
               <p class="card-text"><br>{{user.firstName}} you have {{numExercises}} exercise(s)!<br>Choose 
                 to create a new exercise or view current exercises below.</p>
               <div class="btn-group row align-items-end">
-                <button type="button" class="btn btn-outline-primary" routerLink="exerciselanding">View Exercises</button> 
-                <button type="button" class="btn btn-outline-primary" routerLink="createexercises">Create Exercise</button>
+                <button type="button" class="btn btn-outline-primary" routerLink="../exerciselanding">View Exercises</button> 
+                <button type="button" class="btn btn-outline-primary" routerLink="../createexercise">Create Exercise</button>
               </div>
             </div>
           </div>
         </div>
         <div class="col-md-6">
-          <div class="card text-center" style="height: 300px;">
+          <div class="card text-center">
             <div class="card-body">
               <h5 class="card-title">WORKOUTS</h5>
               <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="btn btn-primary align-bottom">View Workouts</a>
-              <a href="#" class="btn btn-primary">Create Workout </a>
+              <div class="btn-group row align-items-end">
+                <button type="button" class="btn btn-outline-primary" routerLink="../workoutlanding">View Workouts</button> 
+                <button type="button" class="btn btn-outline-primary" routerLink="../createworkout">Create Workout</button>
+              </div>
             </div>
           </div>
         </div>

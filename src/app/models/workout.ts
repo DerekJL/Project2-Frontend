@@ -1,3 +1,5 @@
+import { Exercise } from './exercise';
+
 export class Workout {
     workout_id: number;
     type_id: number;
@@ -6,6 +8,7 @@ export class Workout {
     workout_name: string;
     workout_description: string;
     queued_workout: number;
+    exercises: Exercise[];
 
     // constructor(id: number, type: number, user_id: number, visibility: number, name: string) {
     //     this.workout_id = id;

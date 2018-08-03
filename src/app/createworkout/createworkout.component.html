@@ -1,0 +1,75 @@
+<div class="container">
+  <br>
+  <form id="workout-form" role="form" >
+    <h2 class="text-center">Create a New Workout</h2>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="workout_name">Workout Name</label>
+        <input type="text" class="form-control" id="workout_name" placeholder="Workout Name" name="workout.workout_name" [(ngModel)]="workout.workout_name">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="workout_type">Type</label>
+        <select id="workout_type" class="form-control">
+          <option selected>Choose...</option>
+          <option>...</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <select id="personalExercises" class="form-control" (change)="changePersonalValue($event)">
+          <option selected value="0">Add a Personal Exercise to Your Workout</option>
+          <option *ngFor="let exercise of myExercises" value="{{exercise.exercise_id}}">{{exercise.exercise_name}}</option>
+        </select>
+      </div>
+      <div class="col-md-2" *ngIf="personalValue!=0">
+          <button type="button" class="btn btn-success" (click)="openPersonalModal()">View Exercise Details</button>
+      </div>
+      <div class="col-md-2">
+          <button type="button" class="btn btn-primary" (click)="addPersonalExercise()">Add Exercise to Workout</button>
+      </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+          <select id="publicExercises" class="form-control" (change)="changePublicValue($event)">
+            <option selected value="0">Add a Any Public Exercise to Your Workout</option>
+            <option *ngFor="let exercise of allExercises" value="{{exercise.exercise_id}}">{{exercise.exercise_name}}</option>
+          </select>
+        </div>
+        <div class="col-md-2" *ngIf="publicValue!=0">
+            <button type="button" class="btn btn-success" (click)="openPublicModal()">View Exercise Details</button>
+        </div>
+        <div class="col-md-4">
+            <button type="button" class="btn btn-primary" (click)="addPublicExercise()">Add Exercise to Workout</button>
+        </div>
+      </div>
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Description</label>
+      <textarea class="form-control" id="workout_desciption" rows="2" name="workout.workout_description" [(ngModel)]="workout.workout_desciption"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="createWorkout()">Create Workout</button>
+  </form>
+  <br>
+  <div class="table-responsive" style="height: 300px" *ngIf="workoutExercises.length != 0">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Exercise Name</th>
+          <th scope="col">No. of Sets</th>
+          <th scope="col">No. of Reps</th>
+          <th scope="col">Duration</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let exercise of workoutExercises">
+        <tr>
+          <th scope="row">{{exercise.exercise_name}}</th>
+          <td>{{exercise.exercise_sets}}</td>
+          <td>{{exercise.exercise_reps}}</td>
+          <td>{{exercise.exercise_duration}}</td>
+          <td><button type="button" class="btn btn-danger" (click)="removeExercise(exercise)">X</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

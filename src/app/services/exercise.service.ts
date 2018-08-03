@@ -41,4 +41,8 @@ export class ExerciseService {
     return this.http.get<Exercise[]>(environment.apiUrl + 'exercises');
   }
 
+  public getExerciseById(id: number): Observable<Exercise> {
+    return this.http.get<Exercise>(environment.apiUrl + `exercises/${id}`);
+  }
+
 }
