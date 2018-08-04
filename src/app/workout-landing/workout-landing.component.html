@@ -1,19 +1,20 @@
 <div class="container">
-  <div class="jumbotron  text-center">
-    <h2 class="jumbotron-heading">Your Workouts!</h2>
-    <br>
+  <div class="jumbotron text-center">
+    <h1 class="jumbotron-heading">Your Workouts!</h1>
     <p class="lead text-muted">Quickly Start an Existing Workout or Create a New One From Scratch</p>
+    <button type="button" class="btn btn-primary" routerLink="../createworkout">Create Workout</button>
   </div>
-  <button type="button" class="btn-primary" routerLink="../createworkout">Create Workout</button>
-  <div class="card-deck">
-    <div class="card border-info mb-3" style="max-width: 18rem" *ngFor="let workout of workouts">
-      <div class="card-body text-info">
-        <h5 class="card-title">{{workout.workout_name}}</h5>
-        <p class="card-text">Number of exercises: </p>
-        <p class="card-text">Workout description: {{workout.workout_description}}</p>
-        <div class="card-footer text-muted">
-          <a class="card-link"  (click)="openModal(workout)">View Details</a>
-          <a class="card-link" (click)="startWorkout(workout)">Start Workout</a>
+  <div class="row">
+    <div class="card-deck col-4" *ngFor="let workout of workouts">
+      <div class="card border-info mb-3">
+        <div class="card-body text-info">
+          <h5 class="card-title">{{workout.workout_name}}</h5>
+          <p class="card-text">Number of exercises: </p>
+          <p class="card-text">Workout description: {{workout.workout_description}}</p>
+          <div class="card-footer text-muted">
+            <a class="card-link" (click)="openModal(workout)">View Details</a>
+            <a class="card-link" (click)="startWorkout(workout)">Start Workout</a>
+          </div>
         </div>
       </div>
     </div>

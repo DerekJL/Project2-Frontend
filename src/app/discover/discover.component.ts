@@ -17,7 +17,8 @@ export class DiscoverComponent implements OnInit {
   exerciseList: Exercise[];
   workoutExercises: Exercise[];
 
-  constructor(private workoutService: WorkoutService, private exerciseService: ExerciseService, private router: Router, public modal: Modal) { }
+  constructor(private workoutService: WorkoutService, private exerciseService: ExerciseService,
+    private router: Router, public modal: Modal) { }
 
   ngOnInit() {
 
@@ -26,51 +27,66 @@ export class DiscoverComponent implements OnInit {
 
   }
 
-  getWorkoutList(){
+  getWorkoutList() {
     this.workoutService.getAllWorkouts().subscribe(workouts => {
       this.workoutList = workouts;
       console.log(this.workoutList);
-    })
+    });
   }
 
-  getExerciseList(){
+  getExerciseList() {
     this.exerciseService.getAllExercises().subscribe(exercises => {
       this.exerciseList = exercises;
       console.log(this.exerciseList);
-    })
+    });
   }
 
   startWorkout(workout: Workout) {
-    //set workout to session storage
+    // set workout to session storage
     let workoutString = JSON.stringify(workout);
     sessionStorage.setItem('workout', workoutString);
-    //can also change workout flag if have time to implement backend text based workout
+    // can also change workout flag if have time to implement backend text based workout
     this.router.navigate(['workoutguide']);
   }
 
   openWorkoutModal(workout: Workout) {
-    this.getWorkoutExercises(workout.workout_id);
-    let numExercises = '<li>' + this.workoutExercises.length + '</li>';
-    this.modal .alert()
-    .size('lg')
-    .isBlocking(true)
-    .showClose(false)
-    .keyboard(27)
-    .title(workout.workout_name)
-    .body('<ul>' + numExercises + this.listExercises() + '</ul>')
-    .open();
+    this.exerciseService.getExercisesByWorkoutId(workout.workout_id).subscribe(response => {
+      let exerciseList = '';
+      let returnExercises = response;
+      for (let i = 0; i < returnExercises.length; i++) {
+        exerciseList = exerciseList.concat('<li> Exercise: ' + returnExercises[i].exercise_name + '</li>');
+      }
+      let workoutDescription = '<li> Description: ' + workout.workout_description + '</li>';
+      this.modal.alert()
+      .size('lg')
+      .isBlocking(true)
+      .showClose(false)
+      .keyboard(27)
+      .title(workout.workout_name.toUpperCase())
+      .body('<ul>' + workoutDescription + exerciseList + '</ul>')
+      .open();
+    });
   }
 
   openExerciseModal(exercise: Exercise) {
-    this.modal .alert()
-    .size('lg')
-    .isBlocking(true)
-    .showClose(false)
-    .keyboard(27)
-    .title(exercise.exercise_name)
-    .body('<ul><li>Sets: '+exercise.exercise_sets+'</li><li>Reps: '+exercise.exercise_reps+'</li><li>Duration: '+exercise.exercise_duration+' seconds</li><li>Rest: '+exercise.exercise_rest+' seconds</li></ul>')
-    .open();
-  }
+    let exerciseDescription = '<li> Description: ' + exercise.exercise_description + '</li>';
+    let exerciseSets = '<li> Sets: ' + exercise.exercise_sets + '</li>';
+    let exerciseReps = '<li> Reps: ' + exercise.exercise_reps + '</li>';
+    let exerciseDur = '<li> Duration: ' + exercise.exercise_duration + '</li>';
+    let exerciseRest = '<li> Rest Between Sets: ' + exercise.exercise_rest + '</li>';
+    if (exercise.exercise_rest === null) {
+      exerciseRest = '<li> Rest Between Sets: none</li>';
+    }
+    let modalBody = exerciseDescription + exerciseSets + exerciseReps + exerciseDur + exerciseRest;
+    this.modal.alert()
+      .size('lg')
+      .isBlocking(true)
+      .showClose(false)
+      .keyboard(27)
+      .title(exercise.exercise_name.toUpperCase())
+      .body('<ul>' + modalBody + '</ul>')
+      .open();
+}
 
   getWorkoutExercises(id: number) {
     this.exerciseService.getExercisesByWorkoutId(id).subscribe(response => {

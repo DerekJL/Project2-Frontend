@@ -61,5 +61,10 @@ export class UserService {
    let json = JSON.stringify(user);
    return this.http.post<User>(environment.apiUrl + 'users/usernames', json, HTTP_OPTIONS);
  }
+
+ public updateUser(user: User) {
+   let json = JSON.stringify(user);
+   return this.http.put<User>(environment.apiUrl + 'users/update', json, HTTP_OPTIONS);
+ }
 }
 

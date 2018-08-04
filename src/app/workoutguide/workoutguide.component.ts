@@ -21,7 +21,7 @@ export class WorkoutguideComponent implements OnInit {
   public showExercise:boolean = false;
   public showRest:boolean = false;
 
-  //set the session workout to a workout object
+  // set the session workout to a workout object
   workout: Workout = JSON.parse(this.sessionWorkout);
 
   constructor(private exerciseService: ExerciseService, private router : Router) { }
@@ -38,7 +38,7 @@ export class WorkoutguideComponent implements OnInit {
   //need to get all exercises for workout with backend and put in an exercises array to use for the workout;
   createExerciseArray(){
     this.exerciseService.getExercisesByWorkoutId(this.workout.workout_id).subscribe(exercises => {
-      this.exerciseList = JSON.parse(<any>exercises);
+      this.exerciseList = exercises;
     });
   }
 

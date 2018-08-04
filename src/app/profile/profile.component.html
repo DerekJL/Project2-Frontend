@@ -48,13 +48,23 @@
       <div class="form-group row" *ngIf="doChangePassword">
         <label for="newPassword" class="col-md-2 col-form-label">Enter New Password</label>
         <div class="col-md-4">
-          <input type="password" class="form-control" id="newPassword">
+          <input type="password" class="form-control" name="newPassword" [(ngModel)]="newPassword">
         </div>
         <label for="confirmPassword" class="col-md-2 col-form-label">Confirm Password</label>
         <div class="col-md-4">
-          <input type="password" class="form-control" id="confirmPassword">
+          <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" [(ngModel)]="confirmPassword">
+        </div>
+        <br><br>
+        <div class="col-md-2">
+          <button type="button" class="btn btn-success" (click)="updatePassword()">Save Password</button>
+        </div>
+        <div class="col-md-2">
+          <button type="button" class="btn" (click)="doChangePassword=false">Cancel</button>
         </div>
       </div>
+      <div *ngIf="!passwordMatch" class="alert alert-danger" id="formError">
+          Passwords do not match!
+        </div>
     </form>
   </div>
 </div>

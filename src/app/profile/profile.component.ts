@@ -14,6 +14,10 @@ export class ProfileComponent implements OnInit {
   user: User = new User();
   loggedUser: User = JSON.parse(sessionStorage.getItem('user'));
   doChangePassword = false;
+  currentPassword: string;
+  confirmPassword: string;
+  newPassword: string;
+  passwordMatch = true;
   constructor(private router: Router, private modal: Modal, private userService: UserService) { }
 
   ngOnInit() {
@@ -26,6 +30,19 @@ export class ProfileComponent implements OnInit {
 
   updatePassword() {
     console.log('in updatePassword');
+    console.log('new password: '  + this.newPassword);
+    console.log('confirm password: ' + this.confirmPassword);
+    if (this.confirmPassword === this.newPassword) {
+      this.user.password = this.newPassword;
+      this.userService.updateUser(this.user).subscribe(response => {
+        if (response !== null) {
+          this.user = response;
+          sessionStorage.setItem('user', JSON.stringify(this.user));
+        }
+      });
+    } else {
+      this.passwordMatch = false;
+    }
   }
 
   changePassword() {

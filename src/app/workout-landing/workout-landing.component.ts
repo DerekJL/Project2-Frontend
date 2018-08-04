@@ -61,16 +61,22 @@ export class WorkoutLandingComponent implements OnInit {
   }
 
   openModal(workout: Workout) {
-    this.getExercises(workout.workout_id);
-    let numExercises = '<li>' + this.exercises.length + '</li>';
-    this.modal.alert()
-    .size('lg')
-    .isBlocking(true)
-    .showClose(false)
-    .keyboard(27)
-    .title(workout.workout_name)
-    .body('<ul>' + numExercises + this.listExercises() + '</ul>')
-    .open();
+    this.exerciseService.getExercisesByWorkoutId(workout.workout_id).subscribe(response => {
+      let exerciseList = '';
+      let returnExercises = response;
+      for (let i = 0; i < returnExercises.length; i++) {
+        exerciseList = exerciseList.concat('<li> Exercise: ' + returnExercises[i].exercise_name + '</li>');
+      }
+      let workoutDescription = '<li> Description: ' + workout.workout_description + '</li>';
+      this.modal.alert()
+      .size('lg')
+      .isBlocking(true)
+      .showClose(false)
+      .keyboard(27)
+      .title(workout.workout_name.toUpperCase())
+      .body('<ul>' + workoutDescription + exerciseList + '</ul>')
+      .open();
+    });
   }
 
 }

@@ -43,7 +43,7 @@ export class WorkoutService {
     let json = JSON.stringify(workoutExercise);
     return this.http.post<WorkoutExercise>(environment.apiUrl + 'workouts/createjunction', json, HTTP_OPTIONS);
   }
-  
+
   public getWorkoutById(id: number): Observable<Workout> {
     return this.http.get<Workout>(environment.apiUrl + `workouts/${id}`, HTTP_OPTIONS);
   }
