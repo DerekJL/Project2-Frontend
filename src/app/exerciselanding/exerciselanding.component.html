@@ -4,6 +4,11 @@
     <p class="lead text-muted">View Your Current Exercises or Create a New One to Add to a Workout</p>
     <button type="button" class="btn btn-primary" routerLink="../createexercise">Create Exercise</button>
   </div>
+  <div class="container" *ngIf="exercises.length==0">
+    <div class="text-center">
+      <h2>You do not have any exercises. <br>Create a new one now with the button above.</h2>
+    </div>
+  </div>
   <div class="row">
     <div class="card-deck col-4" *ngFor="let exercise of exercises">
       <div class="card border-info mb-3">

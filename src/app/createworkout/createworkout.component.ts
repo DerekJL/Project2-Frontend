@@ -45,10 +45,10 @@ export class CreateworkoutComponent implements OnInit {
     this.workoutService.createWorkout(this.workout).subscribe((workouts) => {
       // check if exercise was created successfully
       if (workouts === null || workouts === undefined) {
-        console.log('workout was not created or returned successfully');
+        // console.log('workout was not created or returned successfully');
       } else {
-        console.log('workout created successfully');
-        console.log(JSON.stringify(workouts));
+        // console.log('workout created successfully');
+        // console.log(JSON.stringify(workouts));
         // set the workout id to this.workouts.workout_id
         this.workout.workout_id = workouts.workout_id;
 
@@ -73,10 +73,10 @@ export class CreateworkoutComponent implements OnInit {
           this.workoutService.createWorkoutExercise(workoutExercise).subscribe((response) => {
             // check if workoutexercise was created successfully in the junction table
             if (response === null || response === undefined) {
-              console.log('workoutexercise was not created or returned successfully');
+              // console.log('workoutexercise was not created or returned successfully');
             } else {
-              console.log('workoutexercise created successfully');
-              console.log(JSON.stringify(response));
+              // console.log('workoutexercise created successfully');
+              // console.log(JSON.stringify(response));
               this.router.navigate(['workoutlanding']);
             }
           });

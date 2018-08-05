@@ -12,7 +12,7 @@ import { Modal } from '../../../node_modules/ngx-modialog/plugins/bootstrap';
 })
 export class ExerciselandingComponent implements OnInit {
 
-  exercises: Exercise[];
+  exercises: Exercise[] = [];
   loggedUser: User = JSON.parse(sessionStorage.getItem('user'));
 
   constructor(private router: Router, private exerciseService: ExerciseService, private modal: Modal) { }

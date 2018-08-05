@@ -54,17 +54,21 @@
         <div class="col-md-4">
           <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" [(ngModel)]="confirmPassword">
         </div>
-        <br><br>
+        <br>
+        <br>
         <div class="col-md-2">
           <button type="button" class="btn btn-success" (click)="updatePassword()">Save Password</button>
         </div>
         <div class="col-md-2">
-          <button type="button" class="btn" (click)="doChangePassword=false">Cancel</button>
+          <button type="button" class="btn" (click)="cancel()">Cancel</button>
         </div>
       </div>
       <div *ngIf="!passwordMatch" class="alert alert-danger" id="formError">
-          Passwords do not match!
-        </div>
+        Passwords do not match!
+      </div>
+      <div *ngIf="!passwordLength" class="alert alert-danger" id="formError">
+        New password must be at least 8 characters!
+      </div>
     </form>
   </div>
 </div>

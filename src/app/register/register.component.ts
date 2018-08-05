@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
 
   user: User = new User();
-  loggedUser = sessionStorage.getItem('user');
+  loggedUser = JSON.parse(sessionStorage.getItem('user'));
   isValidEmail = true;
   isValidUsername = true;
   isValidFirstName = true;
@@ -22,17 +22,16 @@ export class RegisterComponent implements OnInit {
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
-    if (this.loggedUser != null || this.loggedUser !== undefined) {
-      console.log(this.loggedUser);
+    if (this.loggedUser !== null && this.loggedUser !== undefined) {
       this.router.navigate(['dashboard']);
     }
   }
 
   validEmail() {
-    console.log('in validEmail()');
+    // console.log('in validEmail()');
     this.isValidEmail = true;
     this.userService.isEmailAvailable(this.user).subscribe(users => {
-      console.log('received respose from call to getUsersByEmail()');
+      // console.log('received respose from call to getUsersByEmail()');
       // console.log('user email: ' +this.user.email);
       // console.log('users object returned from database: ' + users.email);
       if (users.email !== null) {
@@ -50,7 +49,7 @@ export class RegisterComponent implements OnInit {
 
   validateEmail(email: string): boolean {
     const regularExpression = /^([a-zA-Z0-9_\.\-+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-    console.log(email);
+    // console.log(email);
     if (email !== null && email !== undefined) {
       return regularExpression.test(email);
     } else {
@@ -74,7 +73,7 @@ export class RegisterComponent implements OnInit {
   }
 
   validateUsername(username: string): boolean {
-    console.log('username: ' + username);
+    // console.log('username: ' + username);
     if (username !== null && username !== undefined) {
       return true;
     } else {
@@ -90,16 +89,16 @@ export class RegisterComponent implements OnInit {
           // Why would a user return null here?
         } else {
           sessionStorage.setItem('user', JSON.stringify(users));
-          console.log(sessionStorage.getItem('user'));
+          // console.log(sessionStorage.getItem('user'));
           this.router.navigate(['login']);
         }
       });
     } else {
-      // Something to go here
-      console.log('entered the empty else statement in register() because an input was not valid');
-      console.log('valid email: ' + this.isValidEmail);
-      console.log('valid username: ' + this.isValidUsername);
-      console.log('valid fields: ' + this.validFields());
+      // // Something to go here
+      // console.log('entered the empty else statement in register() because an input was not valid');
+      // console.log('valid email: ' + this.isValidEmail);
+      // console.log('valid username: ' + this.isValidUsername);
+      // console.log('valid fields: ' + this.validFields());
     }
   }
 

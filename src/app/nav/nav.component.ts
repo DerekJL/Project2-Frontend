@@ -1,7 +1,6 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { User } from '../models/user';
 import { Router } from '../../../node_modules/@angular/router';
-import { NavService } from '../services/nav.service';
 
 @Component({
   selector: 'app-nav',
@@ -12,7 +11,8 @@ export class NavComponent implements OnInit {
 
   loggedUser: User = JSON.parse(sessionStorage.getItem('user'));
   changeDetected = false;
-  constructor(private router: Router, private nav: NavService) { }
+  searchVal: string;
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -31,5 +31,10 @@ export class NavComponent implements OnInit {
   logout() {
     sessionStorage.setItem('user', null);
     this.router.navigate(['login']);
+  }
+
+  search() {
+    sessionStorage.setItem('search', this.searchVal);
+    this.router.navigate(['search']);
   }
 }

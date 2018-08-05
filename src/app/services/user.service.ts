@@ -34,13 +34,13 @@ export class UserService {
     a function once a value is received.
   */
  public loginUser(user: User) {
-   console.log(`Attempting to login user: ${user.username}`);
+  //  console.log(`Attempting to login user: ${user.username}`);
    let json = JSON.stringify(user);
    return this.http.post<User>(environment.apiUrl + 'users/login', json, HTTP_OPTIONS);
  }
 
  public registerUser(user: User): Observable<User> {
-   console.log(`Attempting to register user : ${user.username}`);
+  //  console.log(`Attempting to register user : ${user.username}`);
    const json = JSON.stringify(user);
   //  const emailAvailable = this.isEmailAvailable(user.email);
   //  const usernameAvailable = this.isUsernameAvailable(user.username);
