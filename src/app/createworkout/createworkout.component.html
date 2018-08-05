@@ -60,6 +60,13 @@
       <label for="exampleFormControlTextarea1">Description</label>
       <textarea class="form-control" id="workout_desciption" rows="2" name="workout.workout_description" [(ngModel)]="workout.workout_description"></textarea>
     </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" (change)="checkboxClicked()">
+      <label class="form-check-label" >
+        Make your workout private?
+      </label> <br>
+      <span class="text-muted">By leaving the box unchecked, your workout will default to public and it will be visible to other users.</span>
+    </div> <br>
     <button type="submit" class="btn btn-primary" (click)="createWorkout()">Create Workout</button>
   </form>
   <br>

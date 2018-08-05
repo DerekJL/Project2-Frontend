@@ -79,4 +79,23 @@ export class WorkoutLandingComponent implements OnInit {
     });
   }
 
+  makePrivate(workout: Workout) {
+    workout.workout_visibility = 2;
+    this.workoutService.updateWorkout(workout).subscribe(response => {
+      // console.log(response);
+      // console.log(response.workout_visibility);
+      workout.workout_visibility = response.workout_visibility;
+      // console.log(workout.workout_visibility);
+    });
+  }
+
+  makePublic(workout: Workout) {
+    workout.workout_visibility = 1;
+    this.workoutService.updateWorkout(workout).subscribe(response => {
+      // console.log(response);
+      // console.log(response.workout_visibility);
+      workout.workout_visibility = response.workout_visibility;
+    });
+  }
+
 }
