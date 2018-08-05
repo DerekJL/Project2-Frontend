@@ -24,12 +24,12 @@ export class ExerciseService {
   }
 
   public getExercisesByWorkoutId(workout_id: number): Observable<WorkoutExercise[]> {
-    console.log(`Attempting to retrieve exercises by workout: ${workout_id}`);
+    // console.log(`Attempting to retrieve exercises by workout: ${workout_id}`);
     return this.http.get<WorkoutExercise[]>(environment.apiUrl + `exercises/workouts/${workout_id}`, HTTP_OPTIONS);
   }
 
   public createExercise(exercise: Exercise): Observable<Exercise> {
-    console.log(`Attempting to create exercise`);
+    // console.log(`Attempting to create exercise`);
     let json = JSON.stringify(exercise);
     return this.http.post<Exercise>(environment.apiUrl + 'exercises/create', json, HTTP_OPTIONS);
   }
@@ -38,7 +38,7 @@ export class ExerciseService {
     return this.http.get<Exercise[]>(environment.apiUrl + `exercises/users/${user_id}`, HTTP_OPTIONS);
   }
   public getAllExercises(): Observable<Exercise[]> {
-    console.log('Attempting to retrieve all exercises');
+    // console.log('Attempting to retrieve all exercises');
     return this.http.get<Exercise[]>(environment.apiUrl + 'exercises');
   }
 

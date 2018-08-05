@@ -30,14 +30,14 @@ export class DiscoverComponent implements OnInit {
   getWorkoutList() {
     this.workoutService.getAllWorkouts().subscribe(workouts => {
       this.workoutList = workouts;
-      console.log(this.workoutList);
+      // console.log(this.workoutList);
     });
   }
 
   getExerciseList() {
     this.exerciseService.getAllExercises().subscribe(exercises => {
       this.exerciseList = exercises;
-      console.log(this.exerciseList);
+      // console.log(this.exerciseList);
     });
   }
 

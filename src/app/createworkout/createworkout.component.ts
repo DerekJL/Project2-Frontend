@@ -33,8 +33,8 @@ export class CreateworkoutComponent implements OnInit {
       this.exerciseService.getExercisesByUserId(this.loggedUser.user_id).subscribe(response => {
         this.myExercises = response;
       });
-      this.exerciseService.getAllExercises().subscribe(response => {
-        this.allExercises = response;
+      this.exerciseService.getAllExercises().subscribe(response1 => {
+        this.allExercises = response1;
       });
     }
   }
@@ -45,10 +45,10 @@ export class CreateworkoutComponent implements OnInit {
     this.workoutService.createWorkout(this.workout).subscribe((workouts) => {
       // check if exercise was created successfully
       if (workouts === null || workouts === undefined) {
-        console.log('workout was not created or returned successfully');
+        // console.log('workout was not created or returned successfully');
       } else {
-        console.log('workout created successfully');
-        console.log(JSON.stringify(workouts));
+        // console.log('workout created successfully');
+        // console.log(JSON.stringify(workouts));
         // set the workout id to this.workouts.workout_id
         this.workout.workout_id = workouts.workout_id;
 
@@ -73,10 +73,10 @@ export class CreateworkoutComponent implements OnInit {
           this.workoutService.createWorkoutExercise(workoutExercise).subscribe((response) => {
             // check if workoutexercise was created successfully in the junction table
             if (response === null || response === undefined) {
-              console.log('workoutexercise was not created or returned successfully');
+              // console.log('workoutexercise was not created or returned successfully');
             } else {
-              console.log('workoutexercise created successfully');
-              console.log(JSON.stringify(response));
+              // console.log('workoutexercise created successfully');
+              // console.log(JSON.stringify(response));
               this.router.navigate(['workoutlanding']);
             }
           });
@@ -87,8 +87,8 @@ export class CreateworkoutComponent implements OnInit {
   }
 
   addPublicExercise() {
-    if (this.publicValue !== 0) {
-      console.log(this.publicValue);
+    if (this.publicValue.toString() !== '0') {
+      // console.log(this.publicValue);
       this.exerciseService.getExerciseById(this.publicValue).subscribe(response => {
         if (response !== undefined || response !== null) {
           this.exercises.push(response);
@@ -97,14 +97,14 @@ export class CreateworkoutComponent implements OnInit {
     }
   }
   changePublicValue(event: any) {
-    console.log('Public event target value:' + event.target.value);
+    // console.log('Public event target value:' + event.target.value);
     this.publicValue = event.target.value;
     this.isPublicValue = (this.publicValue === 0) ? false : true;
   }
 
   addPersonalExercise() {
-    console.log(this.personalValue);
-    if (this.personalValue !== 0) {
+    // console.log(this.personalValue);
+    if (this.personalValue.toString() !== '0') {
       this.exerciseService.getExerciseById(this.personalValue).subscribe(response => {
         if (response !== undefined || response !== null) {
           this.exercises.push(response);
@@ -113,13 +113,13 @@ export class CreateworkoutComponent implements OnInit {
     }
   }
   changePersonalValue(event: any) {
-    console.log('Personal event target value: ' + event.target.value);
+    // console.log('Personal event target value: ' + event.target.value);
     this.personalValue = event.target.value;
   }
 
   openPersonalModal() {
     this.exerciseService.getExerciseById(this.personalValue).subscribe(response => {
-      console.log(response);
+      // console.log(response);
       let responseDescription = '<li> Description: ' + response.exercise_description + '</li>';
       let responseSets = '<li> Sets: ' + response.exercise_sets + '</li>';
       let responseReps = '<li> Reps: ' + response.exercise_reps + '</li>';
@@ -142,7 +142,7 @@ export class CreateworkoutComponent implements OnInit {
 
   openPublicModal() {
     this.exerciseService.getExerciseById(this.publicValue).subscribe(response => {
-      console.log(response);
+      // console.log(response);
       let responseDescription = '<li> Description: ' + response.exercise_description + '</li>';
       let responseSets = '<li> Sets: ' + response.exercise_sets + '</li>';
       let responseReps = '<li> Reps: ' + response.exercise_reps + '</li>';
@@ -164,16 +164,15 @@ export class CreateworkoutComponent implements OnInit {
   }
 
   removeExercise(exercise: Exercise) {
-    console.log(exercise);
+    // console.log(exercise);
     this.exercises = this.exercises.filter(elem =>
       elem !== exercise
     );
-    console.log(this.exercises);
+    // console.log(this.exercises);
   }
 
   changeWorkoutType(event: any) {
-    console.log(event.target.value);
+    // console.log(event.target.value);
     this.workout.type_id = +event.target.value;
   }
-
 }

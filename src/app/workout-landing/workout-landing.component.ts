@@ -14,7 +14,7 @@ import { ExerciseService } from '../services/exercise.service';
 })
 export class WorkoutLandingComponent implements OnInit {
 
-  workouts: Workout[];
+  workouts: Workout[] = [];
   exercises: Exercise[];
   // workout1: Workout = new Workout (1, 1, 1, 1, 'push-ups');
   workout: Workout = new Workout();

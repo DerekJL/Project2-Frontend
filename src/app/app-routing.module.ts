@@ -10,6 +10,7 @@ import { CreateexerciseComponent } from './createexercise/createexercise.compone
 import { DiscoverComponent } from './discover/discover.component';
 import { CreateworkoutComponent } from './createworkout/createworkout.component';
 import { ProfileComponent } from './profile/profile.component';
+import { SearchComponent } from './search/search.component';
 
 const ROUTES: Routes = [
     {
@@ -56,6 +57,10 @@ const ROUTES: Routes = [
     {
         path: 'profile',
         component: ProfileComponent
+    },
+    {
+        path: 'search',
+        component: SearchComponent
     }
 ];
 
