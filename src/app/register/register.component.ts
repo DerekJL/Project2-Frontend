@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
 
   user: User = new User();
-  // loggedUser = sessionStorage.getItem('user');
+  loggedUser = sessionStorage.getItem('user');
   isValidEmail = true;
   isValidUsername = true;
   isValidFirstName = true;
@@ -22,9 +22,10 @@ export class RegisterComponent implements OnInit {
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
-    // if (this.loggedUser !== null) {
-    //   this.router.navigate(['dashboard']);
-    // }
+    if (this.loggedUser != null || this.loggedUser !== undefined) {
+      console.log(this.loggedUser);
+      this.router.navigate(['dashboard']);
+    }
   }
 
   validEmail() {
@@ -38,23 +39,23 @@ export class RegisterComponent implements OnInit {
         this.isValidEmail = false;
       } else if (!this.validateEmail(this.user.email)) {
         this.isValidEmail = false;
-      } 
-      if(this.isValidEmail !== false){
+      }
+      if (this.isValidEmail !== false) {
         this.isValidEmail = true;
       }
     });
 
-    
-  } 
+
+  }
 
   validateEmail(email: string): boolean {
     const regularExpression = /^([a-zA-Z0-9_\.\-+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     console.log(email);
-    if(email !== null && email !== undefined){
+    if (email !== null && email !== undefined) {
       return regularExpression.test(email);
-    }else{
+    } else {
       return false;
-    } 
+    }
   }
 
   validUsername() {
@@ -62,23 +63,23 @@ export class RegisterComponent implements OnInit {
     this.userService.isUsernameAvailable(this.user).subscribe(users => {
       if (users.username !== null) {
         this.isValidUsername = false;
-      } else if (this.validateUsername(this.user.username) == false) {
+      } else if (this.validateUsername(this.user.username) === false) {
         this.isValidUsername = false;
       }
-      if(this.isValidUsername !== false){
+      if (this.isValidUsername !== false) {
         this.isValidUsername = true;
-      } 
+      }
     });
-    
+
   }
 
   validateUsername(username: string): boolean {
-    console.log('username: '+username);
-    if(username !== null && username !== undefined){
+    console.log('username: ' + username);
+    if (username !== null && username !== undefined) {
       return true;
-    }else{
+    } else {
       return false;
-    } 
+    }
   }
 
   register() {
@@ -107,25 +108,25 @@ export class RegisterComponent implements OnInit {
     if (this.user.firstName.length < 2) {
       this.isValidFirstName = false;
       returningBool = false;
-    } else{
+    } else {
       this.isValidFirstName = true;
     }
     if (!this.phonenumber(this.user.phone)) {
       this.isValidPhoneNumber = false;
       returningBool = false;
-    } else{
+    } else {
       this.isValidPhoneNumber = true;
     }
     if (this.user.lastName.length < 2) {
       this.isValidLastName = false;
       returningBool = false;
-    } else{
+    } else {
       this.isValidLastName = true;
     }
     if (this.user.password.length < 8) {
       this.isValidPassword = false;
       returningBool = false;
-    } else{
+    } else {
       this.isValidPassword = true;
     }
     return returningBool;

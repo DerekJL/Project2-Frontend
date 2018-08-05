@@ -4,17 +4,28 @@
   <div class="container">
     <h1 class="jumbotron-heading">WorkMeOut</h1>
     <p class="lead text-muted">Your Guide to Personal Fitness</p>
-      <div class="btn-group">
-        <a href="#" class="btn btn-success">Start a workout!</a>
-        <div ngbDropdown class="d-inline-block">
-          <button class="btn btn-outline-success" id="dropdownBasic1" ngbDropdownToggle>Select Workout to Start</button>
-          <div ngbDropdownMenu aria-labelledby="dropdownBasic1" *ngFor="let workout of workouts">
-            <button class="dropdown-item" id="{{workout.workout_id}}">{{workout.workout_name}}</button>
-            <!-- <button class="dropdown-item">Another Action</button>
-            <button class="dropdown-item">Something else is here</button> -->
-          </div>
+      <div class="form-row justify-content-center">
+        <div class="">
+          <button type="button" class="btn btn-success" (click)="startWorkout()">Start Workout</button>
+        </div>
+      <div>
+        <select class="form-control" (change)="changeWorkoutValue($event)">
+          <option selected value="0">Choose a Workout</option>
+          <option *ngFor="let workout of workouts" value="{{workout.workout_id}}">{{workout.workout_name}}</option>
+        </select>
+      </div>
+    </div>
+    <!-- <div class="btn-group">
+      <a href="#" class="btn btn-success">Start a workout!</a>
+      <div ngbDropdown class="d-inline-block">
+        <button class="btn btn-outline-success" id="dropdownBasic1" ngbDropdownToggle>Select Workout to Start</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button class="dropdown-item"  *ngFor="let workout of workouts" id="{{workout.workout_id}}">{{workout.workout_name}}</button>
+          <button class="dropdown-item">Another Action</button>
+          <button class="dropdown-item">Something else is here</button>
         </div>
       </div>
+    </div> -->
   </div>
 </section>
 <div class="album py-5 bg-light">
@@ -25,7 +36,7 @@
           <div class="card text-center">
             <div class="card-body">
               <h5 class="card-title">EXERCISES</h5>
-              <p class="card-text"><br>{{user.firstName}} you have {{numExercises}} exercise(s)!<br>Choose 
+              <p class="card-text"><br>{{user.firstName}} you have {{exercises.length}} exercise(s)!<br>Choose 
                 to create a new exercise or view current exercises below.</p>
               <div class="btn-group row align-items-end">
                 <button type="button" class="btn btn-outline-primary" routerLink="../exerciselanding">View Exercises</button> 
@@ -38,7 +49,8 @@
           <div class="card text-center">
             <div class="card-body">
               <h5 class="card-title">WORKOUTS</h5>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <p class="card-text"><br>{{user.firstName}} you have {{workouts.length}} workout(s)!<br>Choose 
+                to create a new workout or view current workouts below.</p>
               <div class="btn-group row align-items-end">
                 <button type="button" class="btn btn-outline-primary" routerLink="../workoutlanding">View Workouts</button> 
                 <button type="button" class="btn btn-outline-primary" routerLink="../createworkout">Create Workout</button>

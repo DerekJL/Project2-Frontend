@@ -1,20 +1,22 @@
 <div class="container">
   <div class="jumbotron  text-center">
-    <h2 class="jumbotron-heading">Your Exercises!</h2>
-    <br>
+    <h1 class="jumbotron-heading">Your Exercises!</h1>
     <p class="lead text-muted">View Your Current Exercises or Create a New One to Add to a Workout</p>
+    <button type="button" class="btn btn-primary" routerLink="../createexercise">Create Exercise</button>
   </div>
-  <div class="card-deck"  *ngFor="let exercise of exercises">
-    <div class="card border-info mb-3" style="max-width: 18rem">
-      <div class="card-body text-info">
-        <h5 class="card-title">{{exercise.exercise_name}}</h5>
-        <p class="card-text">Description: {{exercise.exercise_description}}</p>
-        <p class="card-text">Number of sets: {{exercise.exercise_sets}}</p>
-        <p class="card-text" *ngIf="exercise.exercise_reps !== null">Number of reps: {{exercise.exercise_reps}}</p>
-        <p class="card-text" *ngIf="exercise.exercise_duration !== null">Duration: {{exercise.exercise_duration}}</p>
-        <p class="card-text">Rest between sets: {{exercise.exercise_rest}}</p>
-        <div class="card-footer text-muted">
-          <a class="card-link"  (click)="openModal(exercise)">View Details</a>
+  <div class="row">
+    <div class="card-deck col-4" *ngFor="let exercise of exercises">
+      <div class="card border-info mb-3">
+        <div class="card-body text-info">
+          <h5 class="card-title">{{exercise.exercise_name}}</h5>
+          <p class="card-text">Description: {{exercise.exercise_description}}</p>
+          <p class="card-text">Number of sets: {{exercise.exercise_sets}}</p>
+          <p class="card-text" *ngIf="exercise.exercise_reps !== null">Number of reps: {{exercise.exercise_reps}}</p>
+          <p class="card-text" *ngIf="exercise.exercise_duration !== null">Duration: {{exercise.exercise_duration}}</p>
+          <p class="card-text">Rest between sets: {{exercise.exercise_rest}}</p>
+          <div class="card-footer text-muted">
+            <a class="card-link" (click)="openModal(exercise)">View Details</a>
+          </div>
         </div>
       </div>
     </div>

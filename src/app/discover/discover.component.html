@@ -1,67 +1,56 @@
-
-<section class="jumbotron text-center">
-  <div class="container">
+<div class="container">
+  <div class="jumbotron text-center">
     <h1 class="jumbotron-heading">Discover</h1>
     <p class="lead text-muted">Search for your new favorite workouts and exercises from around the globe</p>
-  </div>
-</section>
-
-
-<p>
-  <button type="button" class="btn btn-outline-primary" (click)="isCollapsed1 = !isCollapsed1"
-          [attr.aria-expanded]="!isCollapsed1" aria-controls="collapseWorkouts">
-    Show Workouts
-  </button>
-</p>
-<div id="collapseWorkouts" [ngbCollapse]="!isCollapsed1">
-  
-  <div class="card-deck"  *ngFor="let workout of workoutList">
-    <div class="card border-info mb-3" style="max-width: 18rem">
-      <div class="card-body text-info">
-        <h5 class="card-title">{{workout.workout_name}}</h5>
-        <p class="card-text">Description: {{workout.workout_description}}</p>
-        <div class="card-footer text-muted">
-          <a class="card-link"  (click)="openWorkoutModal(workout)">View Exercises</a><br>
-          <a class="card-link" (click)="startWorkout(workout)">Start Workout</a>
-        </div>
+    <div class="row justify-content-center">
+      <div class="col-md-2">
+        <button type="button" class="btn btn-outline-primary" (click)="isCollapsed2 = !isCollapsed2" [attr.aria-expanded]="!isCollapsed2"
+          aria-controls="collapseExercises">
+          Show Exercises
+        </button>
+      </div>
+      <div class="col-md-2">
+        <button type="button" class="btn btn-outline-primary" (click)="isCollapsed1 = !isCollapsed1" [attr.aria-expanded]="!isCollapsed1"
+          aria-controls="collapseWorkouts">
+          Show Workouts
+        </button>
       </div>
     </div>
   </div>
 
-</div>
-
-
-
-<p>
-  <button type="button" class="btn btn-outline-primary" (click)="isCollapsed2 = !isCollapsed2"
-          [attr.aria-expanded]="!isCollapsed2" aria-controls="collapseExercises">
-    Show Exercises
-  </button>
-</p>
-<div id="collapseExercises" [ngbCollapse]="!isCollapsed2">
-  
-
-  <div class="card-deck"  *ngFor="let exercise of exerciseList">
-    <div class="card border-info mb-3" style="max-width: 18rem">
-      <div class="card-body text-info">
-        <h5 class="card-title">{{exercise.exercise_name}}</h5>
-        <p class="card-text">Description: {{exercise.exercise_description}}</p>
-        <div class="card-footer text-muted">
-          <a class="card-link"  (click)="openExerciseModal(exercise)">Exercise Details</a>
+  <div id="collapseWorkouts" [ngbCollapse]="!isCollapsed1">
+    <h3>Workouts</h3><hr>
+    <div class="row">
+      <div class="card-deck col-4" *ngFor="let workout of workoutList">
+        <div class="card border-info mb-3">
+          <div class="card-body text-info">
+            <h5 class="card-title">{{workout.workout_name}}</h5>
+            <p class="card-text">Description: {{workout.workout_description}}</p>
+            <div class="card-footer text-muted">
+              <a class="card-link" (click)="openWorkoutModal(workout)">Workout Details</a>
+              <br>
+              <a class="card-link" (click)="startWorkout(workout)">Start Workout</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
+  <div id="collapseExercises" [ngbCollapse]="!isCollapsed2">
+    <h3>Exercises</h3><hr>
+    <div class="row">
+      <div class="card-deck col-4" *ngFor="let exercise of exerciseList">
+        <div class="card border-info mb-3" style="max-width: 18rem">
+          <div class="card-body text-info">
+            <h5 class="card-title">{{exercise.exercise_name}}</h5>
+            <p class="card-text">Description: {{exercise.exercise_description}}</p>
+            <div class="card-footer text-muted">
+              <a class="card-link" (click)="openExerciseModal(exercise)">Exercise Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-
+  </div>
 </div>
-
-
-
-
-
-
-
-
-
-  

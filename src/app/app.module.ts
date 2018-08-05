@@ -23,6 +23,7 @@ import { CreateexerciseComponent } from './createexercise/createexercise.compone
 import { DiscoverComponent } from './discover/discover.component';
 import { NavService } from './services/nav.service';
 import { CreateworkoutComponent } from './createworkout/createworkout.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { CreateworkoutComponent } from './createworkout/createworkout.component'
     WorkoutLandingComponent,
     ExerciselandingComponent,
     CreateexerciseComponent,
-    CreateworkoutComponent
+    CreateworkoutComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
