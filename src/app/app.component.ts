@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  loggedUser = sessionStorage.getItem('user');
+
+  loggedIn() {
+    if (this.loggedUser === null) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 }

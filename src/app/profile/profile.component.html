@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="jumbotron text-center">
+    <h1 class="jumbotron-heading">Your Profile!</h1>
+    <p class="lead text-muted">View Your Personal Account Information</p>
+  </div>
+  <div class="container">
+    <form>
+      <div class="form-group row">
+        <label for="name" class="col-md-2 col-form-label">Name</label>
+        <div class="col-md-4">
+          <input type="text" readonly class="form-control" id="name" value="{{user.firstName}} {{user.lastName}}">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="email" class="col-md-2 col-form-label">Email</label>
+        <div class="col-md-4">
+          <input type="text" readonly class="form-control" id="email" value="{{user.email}}">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="username" class="col-md-2 col-form-label">Username</label>
+        <div class="col-md-4">
+          <input type="text" readonly class="form-control" id="username" value="{{user.username}}">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="phone" class="col-md-2 col-form-label">Phone Number</label>
+        <div class="col-md-4">
+          <input type="text" readonly class="form-control" id="phone" value="{{user.phone}}">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="pass" class="col-md-2 col-form-label">Password</label>
+        <div class="col-md-4">
+          <input type="text" readyonly class="form-control" id="pass" value="**********">
+        </div>
+        <div>
+          <button type="button" class="btn btn-danger" (click)="changePassword()">Change Password</button>
+        </div>
+      </div>
+      <div class="form-group row" *ngIf="doChangePassword">
+        <label for="currentPassword" class="col-md-2 col-form-label">Enter Current Password</label>
+        <div class="col-md-4">
+          <input type="password" class="form-control" id="currentPassword">
+        </div>
+      </div>
+      <div class="form-group row" *ngIf="doChangePassword">
+        <label for="newPassword" class="col-md-2 col-form-label">Enter New Password</label>
+        <div class="col-md-4">
+          <input type="password" class="form-control" name="newPassword" [(ngModel)]="newPassword">
+        </div>
+        <label for="confirmPassword" class="col-md-2 col-form-label">Confirm Password</label>
+        <div class="col-md-4">
+          <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" [(ngModel)]="confirmPassword">
+        </div>
+        <br>
+        <br>
+        <div class="col-md-2">
+          <button type="button" class="btn btn-success" (click)="updatePassword()">Save Password</button>
+        </div>
+        <div class="col-md-2">
+          <button type="button" class="btn" (click)="cancel()">Cancel</button>
+        </div>
+      </div>
+      <div *ngIf="!passwordMatch" class="alert alert-danger" id="formError">
+        Passwords do not match!
+      </div>
+      <div *ngIf="!passwordLength" class="alert alert-danger" id="formError">
+        New password must be at least 8 characters!
+      </div>
+    </form>
+  </div>
+</div>
