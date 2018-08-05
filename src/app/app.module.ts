@@ -16,14 +16,13 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { WorkoutService } from './services/workout.service';
 import { ExerciseService } from './services/exercise.service';
 import { NavComponent } from './nav/nav.component';
-import { SidenavComponent } from './sidenav/sidenav.component';
 import { WorkoutLandingComponent } from './workout-landing/workout-landing.component';
 import { ExerciselandingComponent } from './exerciselanding/exerciselanding.component';
 import { CreateexerciseComponent } from './createexercise/createexercise.component';
 import { DiscoverComponent } from './discover/discover.component';
-import { NavService } from './services/nav.service';
 import { CreateworkoutComponent } from './createworkout/createworkout.component';
 import { ProfileComponent } from './profile/profile.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -35,12 +34,12 @@ import { ProfileComponent } from './profile/profile.component';
     NavComponent,
     CreateexerciseComponent,
     DiscoverComponent,
-    SidenavComponent,
     WorkoutLandingComponent,
     ExerciselandingComponent,
     CreateexerciseComponent,
     CreateworkoutComponent,
-    ProfileComponent
+    ProfileComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +51,7 @@ import { ProfileComponent } from './profile/profile.component';
     BootstrapModalModule
   ],
   providers: [
-    UserService, WorkoutService, ExerciseService, NavService
+    UserService, WorkoutService, ExerciseService
   ],
   bootstrap: [AppComponent]
 })

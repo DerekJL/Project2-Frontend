@@ -33,11 +33,11 @@ export class DashboardComponent implements OnInit {
       this.user = this.loggedUser;
       this.workoutService.getWorkoutsByUserId(this.user.user_id).subscribe(response => {
         this.workouts = response;
-        console.log('workouts: ' + this.workouts.length);
+        // console.log('workouts: ' + this.workouts.length);
       });
       this.exerciseService.getExercisesByUserId(this.user.user_id).subscribe(response => {
         this.exercises = response;
-        console.log('exercises: ' + this.exercises.length);
+        // console.log('exercises: ' + this.exercises.length);
       });
       this.numWorkouts = this.workouts.length;
       this.numExercises = this.exercises.length;
@@ -50,13 +50,13 @@ export class DashboardComponent implements OnInit {
 
   changeWorkoutValue(event: any) {
     this.selectedWorkout = event.target.value;
-    console.log(this.selectedWorkout);
+    // console.log(this.selectedWorkout);
   }
 
   startWorkout() {
     this.workoutService.getWorkoutById(this.selectedWorkout).subscribe(response => {
       if (response !== null) {
-        console.log('In startWorkout');
+        // console.log('In startWorkout');
         // set workout to session storage
         let workoutString = JSON.stringify(response);
         sessionStorage.setItem('workout', workoutString);

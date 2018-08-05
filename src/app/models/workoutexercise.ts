@@ -10,5 +10,4 @@ export class WorkoutExercise {
     exercise_duration: number;
     exercise_rest: number;
     user_id: number;
-
 }

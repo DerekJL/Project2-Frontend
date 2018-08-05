@@ -39,7 +39,7 @@ export class WorkoutguideComponent implements OnInit {
 
   userDate: Date;
 
-  //set the session workout to a workout object
+  // set the session workout to a workout object
   workout: Workout = JSON.parse(this.sessionWorkout);
   
   constructor(private exerciseService: ExerciseService, private userExerciseService: UserexerciseService, private router : Router) { }
@@ -57,7 +57,6 @@ export class WorkoutguideComponent implements OnInit {
   createExerciseArray(){
     this.exerciseService.getExercisesByWorkoutId(this.workout.workout_id).subscribe(exercises => {
       this.exerciseList = exercises;
-      console.log(exercises);
     });
   }
 
@@ -241,7 +240,7 @@ export class WorkoutguideComponent implements OnInit {
                       }
                     });
                   }
-                  
+
                   //hide exercise details
                   this.showExercise = false;
                   //show rest period

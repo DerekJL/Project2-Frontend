@@ -34,13 +34,13 @@ export class UserService {
     a function once a value is received.
   */
  public loginUser(user: User) {
-   console.log(`Attempting to login user: ${user.username}`);
+  //  console.log(`Attempting to login user: ${user.username}`);
    let json = JSON.stringify(user);
    return this.http.post<User>(environment.apiUrl + 'users/login', json, HTTP_OPTIONS);
  }
 
  public registerUser(user: User): Observable<User> {
-   console.log(`Attempting to register user : ${user.username}`);
+  //  console.log(`Attempting to register user : ${user.username}`);
    const json = JSON.stringify(user);
   //  const emailAvailable = this.isEmailAvailable(user.email);
   //  const usernameAvailable = this.isUsernameAvailable(user.username);
@@ -60,6 +60,11 @@ export class UserService {
  public getUserByUsername(user: User): Observable<User> {
    let json = JSON.stringify(user);
    return this.http.post<User>(environment.apiUrl + 'users/usernames', json, HTTP_OPTIONS);
+ }
+
+ public updateUser(user: User) {
+   let json = JSON.stringify(user);
+   return this.http.put<User>(environment.apiUrl + 'users/update', json, HTTP_OPTIONS);
  }
 }
 

@@ -9,16 +9,29 @@
       </div>
       <div class="form-group col-md-6">
         <label for="workout_type">Type</label>
-        <select id="workout_type" class="form-control">
+        <select id="workout_type" class="form-control" (change)="changeWorkoutType($event)">
           <option selected>Choose...</option>
-          <option>...</option>
+          <option value="1" >Upper Body</option>
+          <option value="2" >Lower Body</option>
+          <option value="3" >Full Body</option>
+          <option value="4" >Chest</option>
+          <option value="5" >Back</option>
+          <option value="6">Bicepts</option>
+          <option value="7">Tricepts</option>
+          <option value="8">Shoulders</option>
+          <option value="9">Abs</option>
+          <option value="10">Glutes</option>
+          <option value="11">Hamstrings</option>
+          <option value="12">Quads</option>
+          <option value="13">Calves</option>
+          <option value="14">Cardio</option>
         </select>
       </div>
     </div>
     <div class="form-row">
       <div class="form-group col-md-6">
         <select id="personalExercises" class="form-control" (change)="changePersonalValue($event)">
-          <option selected value="0">Add a Personal Exercise to Your Workout</option>
+          <option selected value="0">Choose a Personal Exercise to Add to Your Workout</option>
           <option *ngFor="let exercise of myExercises" value="{{exercise.exercise_id}}">{{exercise.exercise_name}}</option>
         </select>
       </div>
@@ -32,12 +45,12 @@
     <div class="form-row">
         <div class="form-group col-md-6">
           <select id="publicExercises" class="form-control" (change)="changePublicValue($event)">
-            <option selected value="0">Add a Any Public Exercise to Your Workout</option>
+            <option selected value="0">Choose a Public Exercise to Add to Your Workout</option>
             <option *ngFor="let exercise of allExercises" value="{{exercise.exercise_id}}">{{exercise.exercise_name}}</option>
           </select>
         </div>
         <div class="col-md-2" *ngIf="publicValue!=0">
-            <button type="button" class="btn btn-success" (click)="openPublicModal()">View Exercise Details</button>
+            <button type="button" class="btn btn-success" (click)="openPublicModal($event)">View Exercise Details</button>
         </div>
         <div class="col-md-4">
             <button type="button" class="btn btn-primary" (click)="addPublicExercise()">Add Exercise to Workout</button>
@@ -45,12 +58,12 @@
       </div>
     <div class="form-group">
       <label for="exampleFormControlTextarea1">Description</label>
-      <textarea class="form-control" id="workout_desciption" rows="2" name="workout.workout_description" [(ngModel)]="workout.workout_desciption"></textarea>
+      <textarea class="form-control" id="workout_desciption" rows="2" name="workout.workout_description" [(ngModel)]="workout.workout_description"></textarea>
     </div>
     <button type="submit" class="btn btn-primary" (click)="createWorkout()">Create Workout</button>
   </form>
   <br>
-  <div class="table-responsive table-hover" style="height: 350px" *ngIf="workoutExercises.length != 0">
+  <div class="table-responsive table-hover" style="height: 350px" *ngIf="exercises.length != 0">
     <table class="table">
       <thead>
         <tr>
@@ -61,7 +74,7 @@
           <th scope="col"></th>
         </tr>
       </thead>
-      <tbody *ngFor="let exercise of workoutExercises">
+      <tbody *ngFor="let exercise of exercises">
         <tr>
           <th scope="row">{{exercise.exercise_name}}</th>
           <td>{{exercise.exercise_sets}}</td>
