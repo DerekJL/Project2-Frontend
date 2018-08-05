@@ -15,7 +15,8 @@
 </p>
 <div id="collapseWorkouts" [ngbCollapse]="!isCollapsed1">
   
-  <div class="card-deck"  *ngFor="let workout of workoutList">
+  <div class="row">
+  <div class="card-deck col-4"  *ngFor="let workout of workoutList">
     <div class="card border-info mb-3" style="max-width: 18rem">
       <div class="card-body text-info">
         <h5 class="card-title">{{workout.workout_name}}</h5>
@@ -27,7 +28,7 @@
       </div>
     </div>
   </div>
-
+</div>
 </div>
 
 
@@ -40,8 +41,8 @@
 </p>
 <div id="collapseExercises" [ngbCollapse]="!isCollapsed2">
   
-
-  <div class="card-deck"  *ngFor="let exercise of exerciseList">
+  <div class="row">
+  <div class="card-deck col-4"  *ngFor="let exercise of exerciseList">
     <div class="card border-info mb-3" style="max-width: 18rem">
       <div class="card-body text-info">
         <h5 class="card-title">{{exercise.exercise_name}}</h5>
@@ -52,7 +53,7 @@
       </div>
     </div>
   </div>
-
+</div>
 
 </div>
 

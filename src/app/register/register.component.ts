@@ -22,9 +22,9 @@ export class RegisterComponent implements OnInit {
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
-    if (this.loggedUser !== null) {
-      this.router.navigate(['dashboard']);
-    }
+    // if (this.loggedUser !== null) {
+    //   this.router.navigate(['dashboard']);
+    // }
   }
 
   validEmail() {

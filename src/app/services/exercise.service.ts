@@ -4,6 +4,7 @@ import { Workout } from '../models/workout';
 import { Observable, BehaviorSubject } from '../../../node_modules/rxjs';
 import { environment } from '../../environments/environment';
 import { Exercise } from '../models/exercise';
+import { WorkoutExercise } from '../models/workoutexercise';
 
 const HTTP_OPTIONS = {
   headers: new HttpHeaders({
@@ -22,9 +23,9 @@ export class ExerciseService {
     const workout = JSON.parse(sessionStorage.getItem('workout'));
   }
 
-  public getExercisesByWorkoutId(workout_id: number): Observable<Exercise[]> {
+  public getExercisesByWorkoutId(workout_id: number): Observable<WorkoutExercise[]> {
     console.log(`Attempting to retrieve exercises by workout: ${workout_id}`);
-    return this.http.get<Exercise[]>(environment.apiUrl + `exercises/${workout_id}`, HTTP_OPTIONS);
+    return this.http.get<WorkoutExercise[]>(environment.apiUrl + `exercises/workouts/${workout_id}`, HTTP_OPTIONS);
   }
 
   public createExercise(exercise: Exercise): Observable<Exercise> {
@@ -44,5 +45,4 @@ export class ExerciseService {
   public getExerciseById(id: number): Observable<Exercise> {
     return this.http.get<Exercise>(environment.apiUrl + `exercises/${id}`);
   }
-
 }

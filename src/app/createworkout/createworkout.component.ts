@@ -38,7 +38,6 @@ export class CreateworkoutComponent implements OnInit {
   }
 
   createWorkout() {
-    this.workout.exercises = this.workoutExercises;
     this.workoutService.createWorkout(this.workout).subscribe(response => {
       if (response !== undefined || response !== null) {
         this.workout = response;
