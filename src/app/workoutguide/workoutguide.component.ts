@@ -81,34 +81,24 @@ export class WorkoutguideComponent implements OnInit {
 
     //check the session storage to see if texting is enabled or disabled
     if(this.textEnabled){
-      //if texting is enabled then call the runWorkout() function in a setTimeout, the timeout should be the timestamp the user set MINUS the current timestamp (in miliseconds).
-      console.log(this.model.year);
-      console.log(this.model.month);
-      console.log(this.model.day);
-      console.log(this.time.hour);
-      console.log(this.time.minute);
 
+      //if texting is enabled then call the runWorkout() function in a setTimeout, the timeout should be the timestamp the user set MINUS the current timestamp (in miliseconds).
       let userDateTime = new Date(this.model.year, (this.model.month-1), this.model.day, this.time.hour, this.time.minute);
       this.userDate = userDateTime;
       this.showWaitingMessage = true;
 
-      console.log(userDateTime);
-      console.log(userDateTime.getTime());
-
       let currentDateTime = new Date();
-      console.log('current: ' +currentDateTime);
-      console.log(currentDateTime.getTime());
 
+      //figure out how long until its time to run the workout
       let waitTime = userDateTime.getTime() - currentDateTime.getTime();
-      console.log(waitTime);
 
+      //run the workout when its time
       setTimeout(this.runWorkout.bind(this), waitTime);
+
     }else{
       //if texting is not enabled then start the workout
       this.runWorkout();
     }
-    //^^^^
-    //create a users timestamp by getting the date from a datepicker and a time from the timepicker.
   }
 
   runWorkout(){
@@ -147,14 +137,16 @@ export class WorkoutguideComponent implements OnInit {
             setTimeout(() => {
                 //display the current exercise's name, duration, next exercise and rest period on the page with property binding
                 
-                //send the userExercises object to the backend to text out the current exercise
-                this.userExerciseService.textUserExercise(userExercise).subscribe((response) => {
-                  if (response) {
-                    console.log('text successful');
-                  } else {
-                    console.log('text unsuccessful');
-                  }
-                });
+                if(this.textEnabled){
+                  //send the userExercises object to the backend to text out the current exercise
+                  this.userExerciseService.textUserExercise(userExercise).subscribe((response) => {
+                    if (response) {
+                      console.log('text successful');
+                    } else {
+                      console.log('text unsuccessful');
+                    }
+                  });
+                }
 
                 //show exercise details
                 this.showExercise = true;
@@ -174,14 +166,16 @@ export class WorkoutguideComponent implements OnInit {
   
                 setTimeout(() => {
                   
-                  //send the userExercise object to the backend to text out the rest period and next exercise
-                  this.userExerciseService.textUserExercise(userExercise).subscribe((response) => {
-                    if (response) {
-                      console.log('text successful');
-                    } else {
-                      console.log('text unsuccessful');
-                    }
-                  });
+                  if(this.textEnabled){
+                    //send the userExercise object to the backend to text out the rest period and next exercise
+                    this.userExerciseService.textUserRest(userExercise).subscribe((response) => {
+                      if (response) {
+                        console.log('text successful');
+                      } else {
+                        console.log('text unsuccessful');
+                      }
+                    });
+                  }
 
                   //show rest period
                   this.showRest = true;
@@ -208,15 +202,17 @@ export class WorkoutguideComponent implements OnInit {
             setTimeout(() => {  
                 //display the current exercise's name, duration, next exercise and rest period on the page with property binding
 
-                //send the userExercises object to the backend to text out the current exercise
-                this.userExerciseService.textUserExercise(userExercise).subscribe((response) => {
-                  if (response) {
-                    console.log('text successful');
-                  } else {
-                    console.log('text unsuccessful');
-                  }
-                });
-                
+                if(this.textEnabled){
+                  //send the userExercises object to the backend to text out the current exercise
+                  this.userExerciseService.textUserExercise(userExercise).subscribe((response) => {
+                    if (response) {
+                      console.log('text successful');
+                    } else {
+                      console.log('text unsuccessful');
+                    }
+                  });
+                }
+
                 //show exercise details
                 this.showExercise = true;
                 //hide rest period
@@ -235,15 +231,17 @@ export class WorkoutguideComponent implements OnInit {
 
                 setTimeout(() =>{
 
-                  //send the userExercise object to the backend to text out the rest period and next exercise
-                  this.userExerciseService.textUserExercise(userExercise).subscribe((response) => {
-                    if (response) {
-                      console.log('text successful');
-                    } else {
-                      console.log('text unsuccessful');
-                    }
-                  });
-
+                  if(this.textEnabled){
+                    //send the userExercise object to the backend to text out the rest period and next exercise
+                    this.userExerciseService.textUserRest(userExercise).subscribe((response) => {
+                      if (response) {
+                        console.log('text successful');
+                      } else {
+                        console.log('text unsuccessful');
+                      }
+                    });
+                  }
+                  
                   //hide exercise details
                   this.showExercise = false;
                   //show rest period

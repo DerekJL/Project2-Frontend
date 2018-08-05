@@ -21,8 +21,14 @@ export class UserexerciseService {
   constructor(private http: HttpClient, private router: Router) { }
 
   public textUserExercise(userExercise: UserExercise): Observable<UserExercise> {
-    console.log(`Attempting to send userExercise for text`);
+    console.log(`Attempting to send userExercise for text exercise`);
     let json = JSON.stringify(userExercise);
-    return this.http.post<UserExercise>(environment.apiUrl + 'user-exercises', json, HTTP_OPTIONS);
+    return this.http.post<UserExercise>(environment.apiUrl + 'user-exercises/exercise', json, HTTP_OPTIONS);
+  }
+
+  public textUserRest(userExercise: UserExercise): Observable<UserExercise> {
+    console.log(`Attempting to send userExercise for text rest`);
+    let json = JSON.stringify(userExercise);
+    return this.http.post<UserExercise>(environment.apiUrl + 'user-exercises/rest', json, HTTP_OPTIONS);
   }
 }
