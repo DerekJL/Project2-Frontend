@@ -25,6 +25,11 @@ export class WorkoutguideComponent implements OnInit {
   nextExercise: String;
   exerciseList: WorkoutExercise[] = [];
 
+  durationCountdown: number;
+  restCountdown: number;
+  repGoal: number;
+
+
   public showExercise = false;
   public showRest = false;
   public showBeginButton = true;
@@ -72,6 +77,12 @@ export class WorkoutguideComponent implements OnInit {
 
   beginWorkout() {
 
+    this.showBeginButton = false;
+    this.showCheckbox = false;
+    this.showDatePicker = false;
+    this.showTimePicker = false;
+    this.showEndButton = true;
+    this.showWaitingMessage = false;
 
 
     // check the session storage to see if texting is enabled or disabled
@@ -160,8 +171,20 @@ export class WorkoutguideComponent implements OnInit {
 
           // current exercise
           this.currentExercise = exerciseList[i].exercise_name;
+
+          // rep goal
+          this.repGoal = exerciseList[i].exercise_reps;
           // set duration
           this.setDuration = exerciseList[i].exercise_duration;
+          this.durationCountdown = this.setDuration / 1000;
+          let timer = 0;
+          for (let j = this.durationCountdown; j >= 0; j--) {
+            timer += 1000;
+            setTimeout(() => {
+              this.durationCountdown = j;
+            }, timer);
+          }
+
           // next exercise (if not the end of the array)
           if ((i + 2) > exerciseList.length) {
             this.nextExercise = 'None';
@@ -194,6 +217,16 @@ export class WorkoutguideComponent implements OnInit {
             } else {
               // rest period
               this.setRest = exerciseList[i].exercise_rest;
+
+              this.durationCountdown = this.setRest / 1000;
+              let restTimer = 0;
+              for (let j = this.durationCountdown; j >= 0; j--) {
+                restTimer += 1000;
+                setTimeout(() => {
+                  this.durationCountdown = j;
+                }, restTimer);
+              }
+
             }
           }, exerciseList[i].exercise_duration);
 
@@ -225,8 +258,20 @@ export class WorkoutguideComponent implements OnInit {
 
           // current exercise
           this.currentExercise = exerciseList[i].exercise_name;
+
+          // rep goal
+          this.repGoal = exerciseList[i].exercise_reps;
           // set duration
           this.setDuration = exerciseList[i].exercise_duration;
+          this.durationCountdown = this.setDuration / 1000;
+          let timer = 0;
+          for (let j = this.durationCountdown; j >= 0; j--) {
+            timer += 1000;
+            setTimeout(() => {
+              this.durationCountdown = j;
+            }, timer);
+          }
+
           // next exercise (if not the end of the array)
           if ((i + 2) > exerciseList.length) {
             this.nextExercise = 'None';
@@ -259,6 +304,16 @@ export class WorkoutguideComponent implements OnInit {
             } else {
               // rest period
               this.setRest = exerciseList[i].exercise_rest;
+
+              this.durationCountdown = this.setRest / 1000;
+              let restTimer = 0;
+              for (let j = this.durationCountdown; j >= 0; j--) {
+                restTimer += 1000;
+                setTimeout(() => {
+                  this.durationCountdown = j;
+                }, restTimer);
+              }
+
             }
           }, exerciseList[i].exercise_duration);
 
