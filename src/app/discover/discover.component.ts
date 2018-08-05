@@ -16,6 +16,7 @@ export class DiscoverComponent implements OnInit {
   workoutList: Workout[];
   exerciseList: Exercise[];
   workoutExercises: Exercise[];
+  testExercises: Exercise[];
 
   constructor(private workoutService: WorkoutService, private exerciseService: ExerciseService,
     private router: Router, public modal: Modal) { }
@@ -24,7 +25,6 @@ export class DiscoverComponent implements OnInit {
 
     this.getWorkoutList();
     this.getExerciseList();
-
   }
 
   getWorkoutList() {
@@ -90,7 +90,8 @@ export class DiscoverComponent implements OnInit {
 
   getWorkoutExercises(id: number) {
     this.exerciseService.getExercisesByWorkoutId(id).subscribe(response => {
-      this.workoutExercises = response;
+      this.testExercises = this.workoutExercises = response;
+      console.log(this.testExercises);
     });
   }
 
