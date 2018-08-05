@@ -104,7 +104,7 @@ export class RegisterComponent implements OnInit {
 
   validFields(): boolean {
     let returningBool = true;
-    if (this.user.firstName.length < 2) {
+    if (this.user.firstName === undefined || this.user.firstName.length < 2 ) {
       this.isValidFirstName = false;
       returningBool = false;
     } else {
@@ -116,13 +116,13 @@ export class RegisterComponent implements OnInit {
     } else {
       this.isValidPhoneNumber = true;
     }
-    if (this.user.lastName.length < 2) {
+    if (this.user.lastName === undefined || this.user.lastName.length < 2) {
       this.isValidLastName = false;
       returningBool = false;
     } else {
       this.isValidLastName = true;
     }
-    if (this.user.password.length < 8) {
+    if (this.user.password === undefined || this.user.password.length < 8) {
       this.isValidPassword = false;
       returningBool = false;
     } else {
@@ -132,6 +132,9 @@ export class RegisterComponent implements OnInit {
   }
 
   phonenumber(phone) {
+    if (phone === undefined) {
+      return false;
+    }
     const format = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
     if (phone.match(format)) {
       return true;
