@@ -17,6 +17,8 @@ export class DiscoverComponent implements OnInit {
   exerciseList: Exercise[];
   workoutExercises: Exercise[];
   testExercises: Exercise[];
+  isCollapsed1 = false;
+  isCollapsed2 = false;
 
   constructor(private workoutService: WorkoutService, private exerciseService: ExerciseService,
     private router: Router, public modal: Modal) { }
