@@ -4,7 +4,7 @@ export class Workout {
     workout_id: number;
     type_id: number;
     user_id: number;
-    workout_visibility = 0;
+    workout_visibility = 1;
     workout_name: string;
     workout_description: string;
     queued_workout: number;

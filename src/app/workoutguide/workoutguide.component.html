@@ -1,47 +1,50 @@
+<div class="card text-center" style="margin: 100px; padding: 30px;">
+  <div *ngIf="showExercise">
+    <h1 id="currentExerciseLabel" style="color: rgb(9, 214, 9)">Current Exercise: <span style="color: black;">{{currentExercise}}</span></h1>
+    <h2 id="currentexercise"></h2>
 
-  <div *ngIf = "showExercise">
-    <h1 id="currentExerciseLabel">Current Exercise:</h1>
-    <h2 id="currentexercise">{{currentExercise}}</h2>
+    <h1 id="setDurationLabel">Set Duration: <span id="setduration">{{setDuration/1000}} second(s)</span></h1>
+    
 
-    <h1 id="setDurationLabel">Set Duration:</h1>
-    <h2 id="setduration">{{setDuration}}</h2>
-
-    <h1 id="nextExerciseLabel">Next Exercise:</h1>
-    <h2 id="nextexercise">{{nextExercise}}</h2>
-  </div>
-  
-  <div *ngIf = "showRest">
-    <h1 id="restLabel">Rest Duration:</h1>
-    <h2 id="setrest">{{setRest}}</h2>
-
-    <h1 id="nextExerciseLabel">Next Exercise:</h1>
-    <h2 id="nextexercise">{{nextExercise}}</h2>
+    <h1 id="nextExerciseLabel" style="color: rgb(55, 155, 212);">Next Exercise: <span id="nextexercise" style="color: black;">{{nextExercise}}</span></h1>
+    
   </div>
 
-  <div class="justify-content-center" *ngIf = "showBeginButton">
-    <button type="submit" class="btn btn-begin" id="beginworkout" (click)="beginWorkout()">Start Workout</button>
+  <div *ngIf="showRest">
+    <h1 id="restLabel" *ngIf="setRest!=0">Rest Duration: <span id="setrest" style="color: black;">{{setRest/1000}} second(s)</span>
+</h1>
+
+    <h1 id="nextExerciseLabel" style="color: rgb(55, 155, 212);" *ngIf="nextExercise!='Workout Complete!'">Next Exercise: <span id="nextexercise" style="color: black;">{{nextExercise}}</span></h1>
+    <h1 id="workoutComplete" *ngIf="nextExercise=='Workout Complete!'">{{nextExercise}}<br>Good work!</h1>
   </div>
 
-  <div *ngIf = "showCheckbox" class="form-check">
-    <input class="form-check-input" type="checkbox" value="" id="textingEnabled" (change) = "checkboxClicked()">
+  <div class="justify-content-center" *ngIf="showBeginButton">
+    <button type="submit" class="btn btn-success" id="beginworkout" (click)="beginWorkout()">Start Workout</button>
+  </div><br>
+
+  <div *ngIf="showCheckbox" class="form-check">
+    <input class="form-check-input" type="checkbox" value="" id="textingEnabled" (change)="checkboxClicked()">
     <label class="form-check-label" for="textingEnabled">
-      Enable text-guide for workout
-    </label>
+      Enable text-guide for workout?
+    </label> <br>
+    <span class="text-muted">WorkMeOut will use the phone number on this account to send text notifications.</span>
   </div>
 
-  <div *ngIf = "showTimePicker">
+  <div *ngIf="showTimePicker">
     <br>
     <p>Choose the Date and Time you would like to begin your workout</p>
     <ngb-timepicker [(ngModel)]="time" [meridian]="meridian"></ngb-timepicker>
+    <div *ngIf="showDatePicker">
+      <ngb-datepicker #dp  [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker>
+    </div>
+    <div class="alert alert-danger" *ngIf="!validTimeAndDate">Invalid time and/or date selection. Please try again.</div>
   </div>
 
-  <div *ngIf = "showDatePicker">
-    <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker>
-  </div>
 
-  <div *ngIf = "showWaitingMessage">
-    <h1>Waiting for workout to begin at: {{userDate}}</h1>
+  <div *ngIf="showWaitingMessage">
+    <h1>Waiting for workout to begin at: <br>{{userDate}}</h1>
   </div>
-  <div class="justify-content-center" *ngIf = "showEndButton">
+  <div class="justify-content-center" *ngIf="showEndButton">
     <button type="submit" class="btn btn-end" id="endworkout" (click)="endWorkout()">End Workout</button>
   </div>
+</div>

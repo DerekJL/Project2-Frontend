@@ -16,6 +16,8 @@
           <h5 class="card-title">{{workout.workout_name}}</h5>
           <p class="card-text">Number of exercises: </p>
           <p class="card-text">Workout description: {{workout.workout_description}}</p>
+          <a class="btn btn-light" *ngIf="workout.workout_visibility==1||workout.workout_visibility==0" (click)="makePrivate(workout)">Make Workout Private</a>
+          <a class="btn btn-light" *ngIf="workout.workout_visibility==2" (click)="makePublic(workout)">Make Workout Public</a><br><br>
           <div class="card-footer text-muted">
             <a class="card-link" (click)="openModal(workout)">View Details</a>
             <a class="card-link" (click)="startWorkout(workout)">Start Workout</a>

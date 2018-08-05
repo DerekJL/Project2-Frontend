@@ -46,4 +46,9 @@ export class WorkoutService {
   public getWorkoutById(id: number): Observable<Workout> {
     return this.http.get<Workout>(environment.apiUrl + `workouts/${id}`, HTTP_OPTIONS);
   }
+
+  public updateWorkout(workout: Workout): Observable<Workout> {
+    let json = JSON.stringify(workout);
+    return this.http.put<Workout>(environment.apiUrl + 'workouts/update', json, HTTP_OPTIONS);
+  }
 }
