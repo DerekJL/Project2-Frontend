@@ -2,17 +2,18 @@
   <div *ngIf="showExercise">
     <h1 id="currentExerciseLabel" style="color: rgb(9, 214, 9)">Current Exercise: <span style="color: black;">{{currentExercise}}</span></h1>
     <h2 id="currentexercise"></h2>
+    <h1 id="repLabel">Rep Goal: <span id="reps">{{repGoal}} </span></h1>
 
-    <h1 id="setDurationLabel">Set Duration: <span id="setduration">{{setDuration/1000}} second(s)</span></h1>
+
+    <h1 id="setDurationLabel">Set Duration: <span id="setduration">{{durationCountdown}} second(s)</span></h1>
     
 
-    <h1 id="nextExerciseLabel" style="color: rgb(55, 155, 212);">Next Exercise: <span id="nextexercise" style="color: black;">{{nextExercise}}</span></h1>
+    <!-- <h1 id="nextExerciseLabel" style="color: rgb(55, 155, 212);">Next Exercise: <span id="nextexercise" style="color: black;">{{nextExercise}}</span></h1> -->
     
   </div>
 
   <div *ngIf="showRest">
-    <h1 id="restLabel" *ngIf="setRest!=0">Rest Duration: <span id="setrest" style="color: black;">{{setRest/1000}} second(s)</span>
-</h1>
+    <h1 id="restLabel" *ngIf="setRest!=0">Rest Duration: <span id="setrest" style="color: black;">{{durationCountdown}} second(s)</span></h1>
 
     <h1 id="nextExerciseLabel" style="color: rgb(55, 155, 212);" *ngIf="nextExercise!='Workout Complete!'">Next Exercise: <span id="nextexercise" style="color: black;">{{nextExercise}}</span></h1>
     <h1 id="workoutComplete" *ngIf="nextExercise=='Workout Complete!'">{{nextExercise}}<br>Good work!</h1>
