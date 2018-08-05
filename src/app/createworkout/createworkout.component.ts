@@ -24,6 +24,7 @@ export class CreateworkoutComponent implements OnInit {
   exercises: Exercise[] = [];
   workoutType: number;
   isPublicValue = (this.publicValue === 0) ? false : true;
+  makePrivate = false;
 
   constructor(private exerciseService: ExerciseService, private router: Router,
     private workoutService: WorkoutService, private modal: Modal) { }
@@ -51,6 +52,9 @@ export class CreateworkoutComponent implements OnInit {
         // console.log(JSON.stringify(workouts));
         // set the workout id to this.workouts.workout_id
         this.workout.workout_id = workouts.workout_id;
+        if (this.makePrivate) {
+          this.workout.workout_visibility = 2;
+        }
 
         // now add a workoutexercise object to the junction table for each exercise in the workout
         for (let i = 0; i < this.exercises.length; i++) {
@@ -174,5 +178,9 @@ export class CreateworkoutComponent implements OnInit {
   changeWorkoutType(event: any) {
     // console.log(event.target.value);
     this.workout.type_id = +event.target.value;
+  }
+
+  checkboxClicked() {
+    this.makePrivate = !this.makePrivate;
   }
 }
