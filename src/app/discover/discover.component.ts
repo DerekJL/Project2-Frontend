@@ -56,7 +56,7 @@ export class DiscoverComponent implements OnInit {
       let exerciseList = '';
       let returnExercises = response;
       for (let i = 0; i < returnExercises.length; i++) {
-        exerciseList = exerciseList.concat('<li> Exercise: ' + returnExercises[i].exercise_name + '</li>');
+        exerciseList = exerciseList.concat('<li> Exercise ' + ( i + 1 ) + ': ' + returnExercises[i].exercise_name + '</li>');
       }
       let workoutDescription = '<li> Description: ' + workout.workout_description + '</li>';
       this.modal.alert()
