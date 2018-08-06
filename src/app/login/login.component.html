@@ -4,7 +4,6 @@
       <form>
         <h2 class="text-center">WorkMeOut Login</h2>
         <br/>
-
         <div class="form-group">
           <label for="username">Username</label>
           <input type="text" class="form-control" id="username" name="user.username" placeholder="Username" [(ngModel)]="user.username">
@@ -19,6 +18,9 @@
           <button type="submit" class="btn btn-default" id="login" (click)="login()">Login</button>
         </div>
       </form>
+      <div class="container text-center">
+        <a style="color: rgb(0, 110, 255);" (click)="forgotPasswordModal()">Forgot Password?</a>
+      </div>
       <br>
       <br>
       <div *ngIf="!isValid" class="alert alert-danger" id="formError">
