@@ -16,6 +16,7 @@ export class RecoveryComponent implements OnInit {
   passwordLength = true;
   user: User = new User();
   passwordSuccess = false;
+  validEmail = true;
   email: string;
 
   constructor(private userService: UserService, private router: Router) { }
@@ -24,39 +25,39 @@ export class RecoveryComponent implements OnInit {
   }
 
   updatePassword() {
-    if (this.newPassword.length < 8) {
+    if (this.confirmPassword !== this.newPassword) {
+      this.passwordMatch = false;
+    } else if (this.email === undefined || this.email === null) {
+      this.validEmail = false;
+    } else if (this.newPassword === undefined || this.newPassword.length < 8) {
       this.passwordLength = false;
-    } else if (this.confirmPassword === this.newPassword) {
-      console.log(this.email);
+    } else {
       this.user.email = this.email;
       this.userService.getUserByEmail(this.user).subscribe(response => {
-        console.log(response);
         if (response !== null && response.email !== null) {
           this.user = response;
           this.user.password = this.newPassword;
-          
+
           this.userService.updateUser(this.user).subscribe(response1 => {
-            console.log(response1);
             if (response1 !== null) {
               this.user = response;
               this.passwordSuccess = true;
 
-              setTimeout(()=> {
+              setTimeout(() => {
                 this.router.navigate(['dashboard']);
-              },3000)
-              
+              }, 3000);
+
             }
           });
         }
       });
-    } else {
-      this.passwordMatch = false;
     }
   }
 
-  cancel() {
-    this.passwordLength = true;
-    this.passwordMatch = true;
+  checkPasswords() {
+    if (this.newPassword !== this.confirmPassword) {
+      this.passwordMatch = false;
+    }
   }
 
 }

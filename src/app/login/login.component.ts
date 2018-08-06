@@ -42,27 +42,30 @@ export class LoginComponent implements OnInit {
   forgotPasswordModal() {
     let string;
     const dialogRef = this.modal.prompt()
-        .size('lg')
-        .isBlocking(true)
-        .showClose(false)
-        .keyboard(27)
-        .title('Password Recovery')
-        .body('Enter account email below')
-        .open();
+      .size('lg')
+      .isBlocking(true)
+      .showClose(false)
+      .keyboard(27)
+      .title('Password Recovery')
+      .body('Enter account email below')
+      .open();
     dialogRef.result
       .then(result => {
-        this.user.email = result;
-        this.userService.forgotPassword(this.user).subscribe(response => {
+        if (result !== undefined || result !== '') {
+          this.user.email = result;
+          this.userService.forgotPassword(this.user).subscribe(response => {
             this.modal.confirm()
-            .size('lg')
-            .isBlocking(true)
-            .showClose(false)
-            .keyboard(27)
-            .title('Recovery Result')
-            .body('Email sent to ' + result)
-            .open();
-        });
+              .size('lg')
+              .isBlocking(true)
+              .showClose(false)
+              .keyboard(27)
+              .title('Recovery Result')
+              .body('Email sent to ' + result)
+              .open();
+          });
+        }
+      })
+      .catch(err => {
       });
   }
-
 }

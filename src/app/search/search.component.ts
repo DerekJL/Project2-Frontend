@@ -5,6 +5,7 @@ import { ExerciseService } from '../services/exercise.service';
 import { WorkoutService } from '../services/workout.service';
 import { Workout } from '../models/workout';
 import { Modal } from '../../../node_modules/ngx-modialog/plugins/bootstrap';
+import { Router } from '../../../node_modules/@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -18,7 +19,7 @@ export class SearchComponent implements OnInit {
   searchResults = [];
 
   constructor(private exerciseService: ExerciseService, private workoutService: WorkoutService,
-    private modal: Modal) { }
+    private modal: Modal, private router: Router) { }
 
   ngOnInit() {
     this.searchVal = (sessionStorage.getItem('search'));
@@ -64,25 +65,32 @@ export class SearchComponent implements OnInit {
       .title(exercise.exercise_name.toUpperCase())
       .body('<ul>' + modalBody + '</ul>')
       .open();
-}
+  }
 
-openWorkoutModal(workout: Workout) {
-  this.exerciseService.getExercisesByWorkoutId(workout.workout_id).subscribe(response => {
-    let exerciseList = '';
-    let returnExercises = response;
-    for (let i = 0; i < returnExercises.length; i++) {
-      exerciseList = exerciseList.concat('<li> Exercise: ' + returnExercises[i].exercise_name + '</li>');
-    }
-    let workoutDescription = '<li> Description: ' + workout.workout_description + '</li>';
-    this.modal.alert()
-    .size('lg')
-    .isBlocking(true)
-    .showClose(false)
-    .keyboard(27)
-    .title(workout.workout_name.toUpperCase())
-    .body('<ul>' + workoutDescription + exerciseList + '</ul>')
-    .open();
-  });
-}
+  openWorkoutModal(workout: Workout) {
+    this.exerciseService.getExercisesByWorkoutId(workout.workout_id).subscribe(response => {
+      let exerciseList = '';
+      let returnExercises = response;
+      for (let i = 0; i < returnExercises.length; i++) {
+        exerciseList = exerciseList.concat('<li> Exercise: ' + returnExercises[i].exercise_name + '</li>');
+      }
+      let workoutDescription = '<li> Description: ' + workout.workout_description + '</li>';
+      this.modal.alert()
+        .size('lg')
+        .isBlocking(true)
+        .showClose(false)
+        .keyboard(27)
+        .title(workout.workout_name.toUpperCase())
+        .body('<ul>' + workoutDescription + exerciseList + '</ul>')
+        .open();
+    });
+  }
+  startWorkout(workout: Workout) {
+    // set workout to session storage
+    let workoutString = JSON.stringify(workout);
+    sessionStorage.setItem('workout', workoutString);
+    // can also change workout flag if have time to implement backend text based workout
+    this.router.navigate(['workoutguide']);
+  }
 
 }
