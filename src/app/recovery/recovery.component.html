@@ -1,6 +1,7 @@
 <p>
   recovery works!
 </p>
+<form>
 <label for="email" class="col-md-2 col-form-label">Enter Email Address</label>
 <div class="col-md-4">
   <input type="text" class="form-control" name="email" [(ngModel)]="email">
@@ -19,6 +20,7 @@
 <div class="col-md-2">
   <button type="button" class="btn" (click)="cancel()">Cancel</button>
 </div>
+
 <div *ngIf="!passwordMatch" class="alert alert-danger" id="formError">
   Passwords do not match!
 </div>
@@ -28,3 +30,4 @@
 <div *ngIf="passwordSuccess" class="alert alert-success" id="formError">
     Password successfully updated!
   </div>
+</form>

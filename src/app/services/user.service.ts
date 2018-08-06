@@ -74,7 +74,7 @@ export class UserService {
 
  public getUserByEmail(user: User) {
    let json = JSON.stringify(user);
-   return this.http.post<User>(environment.apiUrl + 'users/email', json, HTTP_OPTIONS);
+   return this.http.post<User>(environment.apiUrl + 'users/emails', json, HTTP_OPTIONS);
  }
 }
 
