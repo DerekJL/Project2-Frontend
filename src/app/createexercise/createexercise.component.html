@@ -11,6 +11,7 @@
         Exercise name must be at least 1 character.
       </div>
     
+      <label>Exercise Type</label>
       <div class="row">
         <div class="col">
           <div ngbDropdown class="d-inline-block">
@@ -37,7 +38,7 @@
       <div *ngIf="!isValidType" class="alert alert-danger" id="formError">
         Please select an exercise type.
       </div>
-
+      <br>
       <div class="form-group">
         <label for="exercise_description">Description</label>
         <input type="text" class="form-control" id="exercise_description" name="exercise.exercise_description" placeholder="Description" [(ngModel)]="exercise.exercise_description">

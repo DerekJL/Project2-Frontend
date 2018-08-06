@@ -27,17 +27,24 @@ export class RecoveryComponent implements OnInit {
     if (this.newPassword.length < 8) {
       this.passwordLength = false;
     } else if (this.confirmPassword === this.newPassword) {
+      console.log(this.email);
       this.user.email = this.email;
       this.userService.getUserByEmail(this.user).subscribe(response => {
+        console.log(response);
         if (response !== null && response.email !== null) {
+          this.user = response;
           this.user.password = this.newPassword;
+          
           this.userService.updateUser(this.user).subscribe(response1 => {
+            console.log(response1);
             if (response1 !== null) {
               this.user = response;
-              setTimeout(() => {
-                this.passwordSuccess = true;
-              }, 3000);
-              this.router.navigate(['dashboard']);
+              this.passwordSuccess = true;
+
+              setTimeout(()=> {
+                this.router.navigate(['dashboard']);
+              },3000)
+              
             }
           });
         }
