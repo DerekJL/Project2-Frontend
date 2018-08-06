@@ -39,6 +39,9 @@ export class CreateexerciseComponent implements OnInit {
     if (this.validFields()) {
       // set the user id on the exercise
       this.exercise.user_id = this.user.user_id;
+      if (this.exercise.exercise_description === null) {
+        this.exercise.exercise_description = 'No description';
+      }
       // might need to add exercise type and visibility or take them out
       this.exerciseService.createExercise(this.exercise).subscribe((exercises) => {
           // check if exercise was created successfully

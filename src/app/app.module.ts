@@ -23,6 +23,7 @@ import { DiscoverComponent } from './discover/discover.component';
 import { CreateworkoutComponent } from './createworkout/createworkout.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SearchComponent } from './search/search.component';
+import { RecoveryComponent } from './recovery/recovery.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { SearchComponent } from './search/search.component';
     CreateexerciseComponent,
     CreateworkoutComponent,
     ProfileComponent,
-    SearchComponent
+    SearchComponent,
+    RecoveryComponent
   ],
   imports: [
     BrowserModule,

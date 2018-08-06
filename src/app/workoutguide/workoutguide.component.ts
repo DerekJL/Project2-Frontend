@@ -25,10 +25,10 @@ export class WorkoutguideComponent implements OnInit {
   nextExercise: String;
   exerciseList: WorkoutExercise[] = [];
 
+
   durationCountdown: number;
   restCountdown: number;
   repGoal: number;
-
 
   public showExercise = false;
   public showRest = false;
@@ -77,12 +77,14 @@ export class WorkoutguideComponent implements OnInit {
 
   beginWorkout() {
 
+
     this.showBeginButton = false;
     this.showCheckbox = false;
     this.showDatePicker = false;
     this.showTimePicker = false;
     this.showEndButton = true;
     this.showWaitingMessage = false;
+
 
 
     // check the session storage to see if texting is enabled or disabled

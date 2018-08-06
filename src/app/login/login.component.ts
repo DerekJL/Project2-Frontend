@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
+import { Modal } from '../../../node_modules/ngx-modialog/plugins/bootstrap';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   loggedUser = JSON.parse(sessionStorage.getItem('user'));
   isValid = true;
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router, private modal: Modal) { }
 
   ngOnInit() {
     if (this.loggedUser != null) {
@@ -36,6 +37,32 @@ export class LoginComponent implements OnInit {
         });
       }
     });
+  }
+
+  forgotPasswordModal() {
+    let string;
+    const dialogRef = this.modal.prompt()
+        .size('lg')
+        .isBlocking(true)
+        .showClose(false)
+        .keyboard(27)
+        .title('Password Recovery')
+        .body('Enter account email below')
+        .open();
+    dialogRef.result
+      .then(result => {
+        this.user.email = result;
+        this.userService.forgotPassword(this.user).subscribe(response => {
+            this.modal.confirm()
+            .size('lg')
+            .isBlocking(true)
+            .showClose(false)
+            .keyboard(27)
+            .title('Recovery Result')
+            .body('Email sent to ' + result)
+            .open();
+        });
+      });
   }
 
 }
