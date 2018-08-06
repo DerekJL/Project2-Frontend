@@ -46,10 +46,12 @@
 
     <div class="form-group">
       <label for="phonenumber">Phone Number</label>
+
       <input type="text" class="form-control" id="phonenumber" name="user.phone" placeholder="e.g. 1234567890" [(ngModel)]="user.phone">
     </div>
     <div *ngIf="!isValidPhoneNumber" class="alert alert-danger" id="formError">
       Invalid phone number. Use one of the following formats: (XXXXXXXXXX)
+
     </div>
 
     <div class="justify-content-center">
