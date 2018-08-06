@@ -66,5 +66,15 @@ export class UserService {
    let json = JSON.stringify(user);
    return this.http.put<User>(environment.apiUrl + 'users/update', json, HTTP_OPTIONS);
  }
+
+ public forgotPassword(user: User) {
+   let json = JSON.stringify(user);
+   return this.http.post<User>(environment.apiUrl + 'users/reset', json, HTTP_OPTIONS);
+ }
+
+ public getUserByEmail(user: User) {
+   let json = JSON.stringify(user);
+   return this.http.post<User>(environment.apiUrl + 'users/emails', json, HTTP_OPTIONS);
+ }
 }
 

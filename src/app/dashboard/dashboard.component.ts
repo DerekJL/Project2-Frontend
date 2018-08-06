@@ -54,16 +54,18 @@ export class DashboardComponent implements OnInit {
   }
 
   startWorkout() {
-    this.workoutService.getWorkoutById(this.selectedWorkout).subscribe(response => {
-      if (response !== null) {
-        // console.log('In startWorkout');
-        // set workout to session storage
-        let workoutString = JSON.stringify(response);
-        sessionStorage.setItem('workout', workoutString);
-        // can also change workout flag if have time to implement backend text based workout
-        this.router.navigate(['workoutguide']);
-      }
-    });
+    if (this.selectedWorkout !== 0) {
+      this.workoutService.getWorkoutById(this.selectedWorkout).subscribe(response => {
+        if (response !== null) {
+          // console.log('In startWorkout');
+          // set workout to session storage
+          let workoutString = JSON.stringify(response);
+          sessionStorage.setItem('workout', workoutString);
+          // can also change workout flag if have time to implement backend text based workout
+          this.router.navigate(['workoutguide']);
+        }
+      });
+    }
   }
 
 }

@@ -1,0 +1,37 @@
+<div class="container col-6" style="margin-top: 20px;">
+  <div>
+    <form>
+      <h2 class="text-center">Password Recovery</h2>
+      <br>
+      <div class="form-group">
+        <label for="email">Enter Email Address</label>
+        <input type="text" class="form-control" name="email" [(ngModel)]="email">
+      </div>
+      <div *ngIf="!validEmail" class="alert alert-danger" id="formError">
+        Enter valid email
+      </div>
+      <div class="form-group">
+        <label for="newPassword">Enter New Password</label>
+        <input type="password" class="form-control" name="newPassword" [(ngModel)]="newPassword">
+      </div>
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" [(ngModel)]="confirmPassword" (blur)="checkPasswords()">
+      </div>
+      <div class="form-group row">
+        <div class="col-md-6">
+          <button type="button" class="btn btn-success" (click)="updatePassword()">Save Password</button>
+        </div>
+      </div>
+      <div *ngIf="!passwordMatch" class="alert alert-danger" id="formError">
+        Passwords do not match!
+      </div>
+      <div *ngIf="!passwordLength" class="alert alert-danger" id="formError">
+        New password must be at least 8 characters!
+      </div>
+      <div *ngIf="passwordSuccess" class="alert alert-success" id="formError">
+        Password successfully updated! Now navigating to login page.
+      </div>
+    </form>
+  </div>
+</div>
