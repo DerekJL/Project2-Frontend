@@ -43,6 +43,9 @@ export class CreateworkoutComponent implements OnInit {
   createWorkout() {
     console.log(this.workout);
     this.workout.user_id = this.loggedUser.user_id;
+    if (this.workout.workout_description === null) {
+     this.workout.workout_description = 'No description';
+    }
     this.workoutService.createWorkout(this.workout).subscribe((workouts) => {
       // check if exercise was created successfully
       if (workouts === null || workouts === undefined) {
